@@ -140,7 +140,7 @@ async def delete_article(article_id: str):
 @router.get("/bio")
 async def get_bio():
     """Get bio data"""
-    bio = await db.bio.find_one({"id": "bio_main"})
+    bio = await db.bio.find_one({"id": "bio_main"}, {"_id": 0})
     if not bio:
         raise HTTPException(status_code=404, detail="Bio not found")
     return {"bio": bio}
