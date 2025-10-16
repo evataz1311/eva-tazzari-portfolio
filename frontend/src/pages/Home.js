@@ -1,14 +1,46 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
-import { translations, artworks, articles } from '../data/mock';
+import { translations } from '../data/mock';
+import { artworksAPI, articlesAPI } from '../services/api';
 import { ArrowRight } from 'lucide-react';
 import '../styles/portfolio.css';
 
 const Home = () => {
   const { t } = useLanguage();
-  const featuredWorks = artworks.filter(work => work.featured);
-  const latestArticle = articles.find(article => article.featured);
+  const [featuredWorks, setFeaturedWorks] = useState([]);
+  const [latestArticle, setLatestArticle] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [allArtworks, allArticles] = await Promise.all([
+          artworksAPI.getAll(),
+          articlesAPI.getAll()
+        ]);
+        
+        setFeaturedWorks(allArtworks.filter(work => work.featured));
+        setLatestArticle(allArticles.find(article => article.featured));
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return (
+      <div style={{ paddingTop: '100px', textAlign: 'center', minHeight: '100vh' }}>
+        <div className="container">
+          <p className="body-text">Loading...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div>
