@@ -187,7 +187,125 @@ backend:
           comment: "Database seeding script working correctly. Successfully populated 6 artworks, 3 articles, and bio data with proper bilingual content."
 
 frontend:
-  # No frontend testing performed as per instructions
+  - task: "Homepage Hero Section and Featured Works"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/Home.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "testing"
+          comment: "Hero section loads correctly with Eva's name and Italian statement. Featured works section displays 3 artworks from backend API. Latest article section appears with proper content."
+
+  - task: "Language Switcher (IT/EN)"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/contexts/LanguageContext.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "testing"
+          comment: "Language switcher works perfectly. Navigation changes from OPERE/BIO/ARTICOLI/CONTATTI to WORKS/BIO/ARTICLES/CONTACT. Content translates correctly. localStorage persists language preference."
+
+  - task: "Navigation System"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/components/Header.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "testing"
+          comment: "All header navigation links work correctly: HOME→/, OPERE→/works, BIO→/bio, ARTICOLI→/articles, CONTATTI→/contact. Active page indicator functions properly."
+
+  - task: "Works Page with Filtering"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/Works.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "testing"
+          comment: "Works page displays all 6 artworks from backend. Filter buttons work correctly: TUTTE (6 works), SCULTURA (2 works), WEARABLE (2 works), INSTALLAZIONI (2 works). Active filter styling changes properly. Artwork cards navigate to detail pages."
+
+  - task: "Work Detail Pages"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/WorkDetail.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "testing"
+          comment: "Work detail pages display all information correctly: title, year, technique, dimensions, description, series, exhibition, availability status. 'Torna alle opere' button works. 'Richiedi informazioni' button navigates to contact page. Images load properly."
+
+  - task: "Bio Page"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/Bio.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "testing"
+          comment: "Bio page loads correctly with portrait image, short and extended bio text in current language, and exhibitions list with years and events. Proper formatting and spacing maintained."
+
+  - task: "Articles Page and Detail"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/Articles.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "testing"
+          comment: "Articles page displays all 3 articles from backend with images, dates, titles, and excerpts. Article detail pages show complete content with featured image, proper date formatting, and 'Torna agli articoli' button. Author section displays at bottom."
+
+  - task: "Contact Form"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/Contact.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "testing"
+          comment: "Contact form works perfectly. Successfully submitted with realistic Italian data (Marco Rossi, marco.rossi@example.com, message about sculpture interest). Success message appears in Italian. Form clears after submission. Contact info section displays email and Instagram links."
+
+  - task: "Footer and Links"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/components/Footer.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "testing"
+          comment: "Footer displays correctly with 3 sections. All footer links work properly including navigation links, Instagram, and email links. Copyright and policy information displayed."
+
+  - task: "API Integration and Data Loading"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/services/api.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "testing"
+          comment: "API integration fully functional. 82 API calls made successfully with 200 responses. No mock data references in console. Bilingual data transformation works correctly (title_it/title_en → title.it/title.en). Loading states appear briefly before content loads."
 
 metadata:
   created_by: "testing_agent"
