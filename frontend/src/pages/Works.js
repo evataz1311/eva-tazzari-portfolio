@@ -56,35 +56,42 @@ const Works = () => {
             ))}
           </div>
 
-          {/* Works Grid */}
-          <div className="grid-3">
-            {filteredWorks.map((work, index) => (
-              <div 
-                key={work.id} 
-                className="artwork-card fade-in-up"
-                style={{ animationDelay: `${index * 0.05}s` }}
-              >
-                <Link to={`/works/${work.id}`}>
-                  <div className="image-overlay">
-                    <img 
-                      src={work.image} 
-                      alt={t(work.title)} 
-                      className="artwork-image"
-                    />
-                  </div>
-                  <div className="artwork-info">
-                    <h3 className="artwork-title">{t(work.title)}</h3>
-                    <div className="artwork-meta">
-                      <span className="small-text">{work.year}</span>
-                      <span className="category-badge">
-                        {t(translations.works[work.category])}
-                      </span>
+          {/* Loading State */}
+          {loading ? (
+            <div style={{ textAlign: 'center', padding: 'var(--spacing-3xl)' }}>
+              <p className="body-text">Loading...</p>
+            </div>
+          ) : (
+            /* Works Grid */
+            <div className="grid-3">
+              {artworks.map((work, index) => (
+                <div 
+                  key={work.id} 
+                  className="artwork-card fade-in-up"
+                  style={{ animationDelay: `${index * 0.05}s` }}
+                >
+                  <Link to={`/works/${work.id}`}>
+                    <div className="image-overlay">
+                      <img 
+                        src={work.image} 
+                        alt={t(work.title)} 
+                        className="artwork-image"
+                      />
                     </div>
-                  </div>
-                </Link>
-              </div>
-            ))}
-          </div>
+                    <div className="artwork-info">
+                      <h3 className="artwork-title">{t(work.title)}</h3>
+                      <div className="artwork-meta">
+                        <span className="small-text">{work.year}</span>
+                        <span className="category-badge">
+                          {t(translations.works[work.category])}
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
     </div>
