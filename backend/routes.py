@@ -86,7 +86,7 @@ async def delete_artwork(artwork_id: str):
 @router.get("/articles")
 async def get_articles():
     """Get all articles"""
-    articles = await db.articles.find().to_list(1000)
+    articles = await db.articles.find({}, {"_id": 0}).to_list(1000)
     return {"articles": articles}
 
 
