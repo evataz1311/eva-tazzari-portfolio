@@ -32,7 +32,7 @@ async def get_artworks(category: Optional[str] = None):
     if category:
         query["category"] = category
     
-    artworks = await db.artworks.find(query).to_list(1000)
+    artworks = await db.artworks.find(query, {"_id": 0}).to_list(1000)
     return {"artworks": artworks}
 
 
