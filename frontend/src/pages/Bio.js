@@ -1,10 +1,48 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
-import { translations, bioData } from '../data/mock';
+import { translations } from '../data/mock';
+import { bioAPI } from '../services/api';
 import '../styles/portfolio.css';
 
 const Bio = () => {
   const { t } = useLanguage();
+  const [bioData, setBioData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchBio = async () => {
+      try {
+        const data = await bioAPI.get();
+        setBioData(data);
+      } catch (error) {
+        console.error('Error fetching bio:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBio();
+  }, []);
+
+  if (loading) {
+    return (
+      <div style={{ paddingTop: '100px', textAlign: 'center', minHeight: '100vh' }}>
+        <div className="container">
+          <p className="body-text">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!bioData) {
+    return (
+      <div style={{ paddingTop: '100px', textAlign: 'center' }}>
+        <div className="container">
+          <p className="body-text">Bio data not found</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div style={{ paddingTop: '80px' }}>

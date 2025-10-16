@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { translations } from '../data/mock';
+import { contactAPI } from '../services/api';
 import { Mail, Send } from 'lucide-react';
 import '../styles/portfolio.css';
 
@@ -12,6 +13,7 @@ const Contact = () => {
     message: ''
   });
   const [status, setStatus] = useState({ type: '', message: '' });
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -23,15 +25,24 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus({ type: '', message: '' });
+    setLoading(true);
 
-    // Mock submission - will be replaced with backend
-    setTimeout(() => {
+    try {
+      await contactAPI.submit(formData);
       setStatus({ 
         type: 'success', 
         message: t(translations.contact.success)
       });
       setFormData({ name: '', email: '', message: '' });
-    }, 1000);
+    } catch (error) {
+      console.error('Error submitting contact form:', error);
+      setStatus({ 
+        type: 'error', 
+        message: t(translations.contact.error)
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -107,6 +118,7 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
+                      disabled={loading}
                       style={{
                         width: '100%',
                         padding: 'var(--spacing-sm)',
@@ -137,6 +149,7 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
+                      disabled={loading}
                       style={{
                         width: '100%',
                         padding: 'var(--spacing-sm)',
@@ -166,6 +179,7 @@ const Contact = () => {
                       value={formData.message}
                       onChange={handleChange}
                       required
+                      disabled={loading}
                       rows="6"
                       style={{
                         width: '100%',
@@ -197,9 +211,14 @@ const Contact = () => {
                     </div>
                   )}
 
-                  <button type="submit" className="btn btn-primary" style={{ width: '100%' }}>
+                  <button 
+                    type="submit" 
+                    className="btn btn-primary" 
+                    style={{ width: '100%' }}
+                    disabled={loading}
+                  >
                     <Send size={16} />
-                    {t(translations.contact.send)}
+                    {loading ? 'Sending...' : t(translations.contact.send)}
                   </button>
                 </form>
               </div>

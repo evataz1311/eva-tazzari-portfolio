@@ -1,12 +1,40 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
-import { translations, articles } from '../data/mock';
+import { translations } from '../data/mock';
+import { articlesAPI } from '../services/api';
 import { ArrowRight, Calendar } from 'lucide-react';
 import '../styles/portfolio.css';
 
 const Articles = () => {
   const { t } = useLanguage();
+  const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchArticles = async () => {
+      try {
+        const data = await articlesAPI.getAll();
+        setArticles(data);
+      } catch (error) {
+        console.error('Error fetching articles:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchArticles();
+  }, []);
+
+  if (loading) {
+    return (
+      <div style={{ paddingTop: '100px', textAlign: 'center', minHeight: '100vh' }}>
+        <div className="container">
+          <p className="body-text">Loading...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div style={{ paddingTop: '80px' }}>

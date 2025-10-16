@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
-import { translations, artworks } from '../data/mock';
+import { translations } from '../data/mock';
+import { artworksAPI } from '../services/api';
 import { ArrowLeft, Calendar, Ruler, Layers, MapPin, CheckCircle, XCircle } from 'lucide-react';
 import '../styles/portfolio.css';
 
@@ -9,9 +10,37 @@ const WorkDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { t } = useLanguage();
-  const work = artworks.find(w => w.id === parseInt(id));
+  const [work, setWork] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
-  if (!work) {
+  useEffect(() => {
+    const fetchWork = async () => {
+      try {
+        const data = await artworksAPI.getById(id);
+        setWork(data);
+      } catch (error) {
+        console.error('Error fetching artwork:', error);
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchWork();
+  }, [id]);
+
+  if (loading) {
+    return (
+      <div style={{ paddingTop: '120px', textAlign: 'center', minHeight: '100vh' }}>
+        <div className="container">
+          <p className="body-text">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error || !work) {
     return (
       <div style={{ paddingTop: '120px', textAlign: 'center' }}>
         <div className="container">

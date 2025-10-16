@@ -1,16 +1,45 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
-import { translations, articles } from '../data/mock';
+import { translations } from '../data/mock';
+import { articlesAPI } from '../services/api';
 import { ArrowLeft, Calendar } from 'lucide-react';
 import '../styles/portfolio.css';
 
 const ArticleDetail = () => {
   const { id } = useParams();
   const { t } = useLanguage();
-  const article = articles.find(a => a.id === parseInt(id));
+  const [article, setArticle] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
-  if (!article) {
+  useEffect(() => {
+    const fetchArticle = async () => {
+      try {
+        const data = await articlesAPI.getById(id);
+        setArticle(data);
+      } catch (error) {
+        console.error('Error fetching article:', error);
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchArticle();
+  }, [id]);
+
+  if (loading) {
+    return (
+      <div style={{ paddingTop: '120px', textAlign: 'center', minHeight: '100vh' }}>
+        <div className="container">
+          <p className="body-text">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error || !article) {
     return (
       <div style={{ paddingTop: '120px', textAlign: 'center' }}>
         <div className="container">
