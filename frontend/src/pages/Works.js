@@ -1,16 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
-import { translations, artworks } from '../data/mock';
+import { translations } from '../data/mock';
+import { artworksAPI } from '../services/api';
 import '../styles/portfolio.css';
 
 const Works = () => {
   const { t } = useLanguage();
   const [activeFilter, setActiveFilter] = useState('all');
+  const [artworks, setArtworks] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const filteredWorks = activeFilter === 'all' 
-    ? artworks 
-    : artworks.filter(work => work.category === activeFilter);
+  useEffect(() => {
+    const fetchArtworks = async () => {
+      try {
+        setLoading(true);
+        const category = activeFilter === 'all' ? null : activeFilter;
+        const data = await artworksAPI.getAll(category);
+        setArtworks(data);
+      } catch (error) {
+        console.error('Error fetching artworks:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchArtworks();
+  }, [activeFilter]);
 
   const filters = [
     { key: 'all', label: translations.works.all },
