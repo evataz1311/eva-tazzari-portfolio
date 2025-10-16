@@ -10,7 +10,7 @@ export const translations = {
   },
   home: {
     hero: {
-      it: 'Trasformo pensieri in sculture indossabili e installazioni. Racconto la direzione del mondo e l'impatto della tecnologia sulla vita, cercando la bellezza viva nelle fratture.',
+      it: 'Trasformo pensieri in sculture indossabili e installazioni. Racconto la direzione del mondo e l\'impatto della tecnologia sulla vita, cercando la bellezza viva nelle fratture.',
       en: 'I transform thoughts into wearable sculptures and installations. I tell the story of the world\'s direction and technology\'s impact on life, seeking living beauty in fractures.'
     },
     intro: {
