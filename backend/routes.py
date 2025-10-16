@@ -39,7 +39,7 @@ async def get_artworks(category: Optional[str] = None):
 @router.get("/artworks/{artwork_id}")
 async def get_artwork(artwork_id: str):
     """Get single artwork by ID"""
-    artwork = await db.artworks.find_one({"id": artwork_id})
+    artwork = await db.artworks.find_one({"id": artwork_id}, {"_id": 0})
     if not artwork:
         raise HTTPException(status_code=404, detail="Artwork not found")
     return {"artwork": artwork}
