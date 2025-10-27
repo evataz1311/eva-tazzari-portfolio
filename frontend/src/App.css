@@ -1,4 +1,17 @@
-/* Eva Tazzari Portfolio - App Styles */
+/* Eva Tazzari Portfolio - App Styles (rev clean) */
+
+/* Base & reset leggeri */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
 .App {
   min-height: 100vh;
@@ -6,53 +19,188 @@
   flex-direction: column;
 }
 
-/* Ensure smooth scrolling */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Link styles */
+/* Link */
 a {
   transition: all 0.3s ease;
+  text-decoration: none;
 }
 
-/* Responsive images */
+/* Immagini responsive (default) */
 img {
   max-width: 100%;
   height: auto;
   display: block;
 }
 
-/* Grid responsive adjustments */
+/* Container (opzionale) */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 16px;
+}
+
+/* Griglie di base */
+.grid { display: grid; gap: 24px; }
+
+.grid-1 { grid-template-columns: 1fr; }
+.grid-2 { grid-template-columns: 1fr 1fr; }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-2-3 { grid-template-columns: 1fr 1.5fr; }
+.grid-3-2 { grid-template-columns: 1.5fr 1fr; }
+.grid-100-1fr { grid-template-columns: 100px 1fr; }
+
+/* Hero (fallback desktop) */
+.hero-section {
+  min-height: 80vh;
+  display: grid;
+  place-items: center;
+}
+
+/* Nav (fallback desktop) */
+.nav-menu {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+/* Responsive */
 @media (max-width: 1024px) {
-  .grid-3 {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 640px) {
-  .grid-3 {
-    grid-template-columns: 1fr;
-  }
-  
-  .hero-section {
-    min-height: 70vh;
-  }
-  
-  /* Mobile navigation adjustments */
+  .grid-3,
+  .grid-2,
+  .grid-2-3,
+  .grid-3-2,
+  .grid-100-1fr { grid-template-columns: 1fr; }
+
+  .hero-section { min-height: 70vh; }
+
+  /* Nav mobile */
   .nav-menu {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
   }
-  
-  /* Two column grids become single column on mobile */
-  div[style*="grid-template-columns: '1fr 1fr'"],
-  div[style*="grid-template-columns: 1fr 1fr"],
-  div[style*="grid-template-columns: 1fr 1.5fr"],
-  div[style*="grid-template-columns: 1.5fr 1fr"],
-  div[style*="grid-template-columns: '100px 1fr'"],
-  div[style*="grid-template-columns: 100px 1fr"] {
-    grid-template-columns: 1fr !important;
-  }
 }
+
+/* Riduci animazioni se l’utente lo chiede */
+@media (prefers-reduced-motion: reduce) {
+  a { transition: none; }
+}
+
+/* ============ BIO & IMMAGINI “NO ZOOM” ============ */
+
+/* Opzione A: classe da mettere direttamente sull’immagine */
+.img-contain {
+  width: 100%;
+  height: auto !important;
+  object-fit: contain !important;
+  object-position: center;
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* Opzione B: wrapper + img (se il box ha altezza fissa o ratio) */
+.media-slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  /* aspect-ratio: 4 / 3; */
+  /* max-height: 480px; */
+}
+.media-slot img {
+  width: 100%;
+  height: auto !important;
+  object-fit: contain !important;
+  object-position: center;
+}
+
+/* Forza adattamento per file in /media/bio */
+img[src^="/media/bio/"] {
+  width: 100%;
+  height: auto !important;
+  object-fit: contain !important;
+  object-position: center;
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+
+
+/* ============ PAGINA DETTAGLIO OPERA ============ */
+
+/* Allinea le colonne in alto su desktop (immagine + scheda testo) */
+@media (min-width: 1024px) {
+  .grid-2,
+  .grid-2-3,
+  .grid-3-2 { align-items: start !important; }
+}
+
+{
+  object-position: top center !important; /* ok per la pagina dettaglio */
+}
+
+/* ============ GRIGLIA OPERE (ELENCO) ============ */
+
+/* Sezione griglia opere: crea box uniforme e centra davvero i thumbnail */
+.works-grid .thumb,
+.work-card .thumb,
+.work-card .image,
+.work-card figure {
+  display: grid;
+  place-items: center;     /* centro orizzontale + verticale */
+  aspect-ratio: 4 / 3;     /* altezza uniforme delle card */
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Fallback: se non esiste .thumb, centra direttamente l’immagine dentro la card */
+.works-grid .work-card > img {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* Regola immagine dei thumbnail: centrata e senza crop */
+.works-grid .thumb img,
+.work-card .thumb img,
+.work-card .image img,
+.work-card figure > img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;      /* niente ritagli */
+  object-position: center;  /* centrata davvero, non in alto */
+  display: block;
+}
+
+/* Evita che la card alteri l’allineamento verticale */
+.works-grid .work-card { align-self: start; }
+/* Box con rapporto fisso, tutte le anteprime uniformi */
+.work-thumb {
+  width: 100%;
+  aspect-ratio: 4 / 3;     /* prova 4/3; cambia in 1/1, 3/2, ecc. se preferisci */
+  overflow: hidden;
+  background: #f7f7f7;     /* evita vuoti brutti durante il caricamento */
+  border-radius: 8px;      /* opzionale, se vuoi angoli arrotondati */
+}
+
+/* L'immagine riempie il box e resta centrata */
+.work-thumb-img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;        /* riempi senza deformare */
+  object-position: center 60%;  /* <-- alza/abbassa il “taglio” verticale */
+}
+
+

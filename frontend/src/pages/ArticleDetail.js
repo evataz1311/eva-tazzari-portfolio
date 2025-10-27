@@ -111,7 +111,7 @@ const ArticleDetail = () => {
             <div style={{ marginTop: 'var(--spacing-3xl)', paddingTop: 'var(--spacing-2xl)', borderTop: '1px solid var(--color-gray-200)' }}>
               <div style={{ display: 'flex', gap: 'var(--spacing-lg)', alignItems: 'center' }}>
                 <img 
-                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&q=80"
+                  src="/media/bio/foto-bio-vert.png"
                   alt="Eva Tazzari"
                   style={{ width: '80px', height: '80px', borderRadius: '50%', objectFit: 'cover' }}
                 />

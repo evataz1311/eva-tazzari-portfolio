@@ -1,182 +1,89 @@
-from fastapi import APIRouter, HTTPException
-from typing import List, Optional
-from models import (
-    Artwork, ArtworkCreate, ArtworkUpdate,
-    Article, ArticleCreate, ArticleUpdate,
-    Bio, BioUpdate,
-    ContactMessage, ContactMessageCreate
-)
-from datetime import datetime
-from motor.motor_asyncio import AsyncIOMotorClient
-import os
-from pathlib import Path
-from dotenv import load_dotenv
-
-# Load environment variables
-ROOT_DIR = Path(__file__).parent
-load_dotenv(ROOT_DIR / '.env')
-
-# MongoDB connection
-mongo_url = os.environ['MONGO_URL']
-client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ['DB_NAME']]
+from fastapi import APIRouter
+from pydantic import BaseModel, EmailStr, Field
+from db import get_db
+import os, smtplib, ssl
+from email.message import EmailMessage
 
 router = APIRouter()
 
+class ContactIn(BaseModel):
+    name: str = Field(..., min_length=1)
+    email: EmailStr
+    message: str = Field(..., min_length=1)
 
-# Artworks Routes
-@router.get("/artworks")
-async def get_artworks(category: Optional[str] = None):
-    """Get all artworks, optionally filtered by category"""
-    query = {}
-    if category:
-        query["category"] = category
-    
-    artworks = await db.artworks.find(query, {"_id": 0}).to_list(1000)
-    return {"artworks": artworks}
+def send_mail(subject: str, body: str):
+    import os
+    import ssl
+    import smtplib
+    from email.message import EmailMessage
 
+    host = os.getenv("EMAIL_HOST", "127.0.0.1")
+    port = int(os.getenv("EMAIL_PORT", "1025"))
+    user = os.getenv("EMAIL_USER")
+    pwd  = os.getenv("EMAIL_PASS")
+    to   = os.getenv("EMAIL_TO")
+    cc   = os.getenv("EMAIL_CC", "")
 
-@router.get("/artworks/{artwork_id}")
-async def get_artwork(artwork_id: str):
-    """Get single artwork by ID"""
-    artwork = await db.artworks.find_one({"id": artwork_id}, {"_id": 0})
-    if not artwork:
-        raise HTTPException(status_code=404, detail="Artwork not found")
-    return {"artwork": artwork}
+    cc_list = [x.strip() for x in cc.split(",") if x.strip()]
+    recipients = ([to] if to else []) + cc_list
 
+    if not (host and port and user and pwd and to):
+        raise RuntimeError("Email not configured (host/port/user/pass/to)")
 
-@router.post("/artworks", response_model=Artwork)
-async def create_artwork(artwork: ArtworkCreate):
-    """Create new artwork"""
-    artwork_dict = artwork.dict()
-    artwork_obj = Artwork(**artwork_dict)
-    await db.artworks.insert_one(artwork_obj.dict())
-    return artwork_obj
+    # Header email
+    msg = EmailMessage()
+    msg["Subject"] = subject
+    msg["From"] = user            # mittente effettivo (Bridge)
+    msg["To"] = to
+    if cc_list:
+        msg["Cc"] = ", ".join(cc_list)
+    msg.set_content(body)
 
+    # SSL context: disabilita verifica SOLO su loopback (Bridge locale)
+    if host in ("127.0.0.1", "localhost"):
+        ctx = ssl.create_default_context()
+        ctx.check_hostname = False
+        ctx.verify_mode = ssl.CERT_NONE
+    else:
+        ctx = ssl.create_default_context()
 
-@router.put("/artworks/{artwork_id}", response_model=Artwork)
-async def update_artwork(artwork_id: str, artwork_update: ArtworkUpdate):
-    """Update artwork"""
-    existing = await db.artworks.find_one({"id": artwork_id})
-    if not existing:
-        raise HTTPException(status_code=404, detail="Artwork not found")
-    
-    update_data = {k: v for k, v in artwork_update.dict().items() if v is not None}
-    update_data["updated_at"] = datetime.utcnow()
-    
-    await db.artworks.update_one(
-        {"id": artwork_id},
-        {"$set": update_data}
-    )
-    
-    updated = await db.artworks.find_one({"id": artwork_id})
-    return Artwork(**updated)
+    # Proton Bridge: 1025 = SSL implicita; 1026 = STARTTLS
+    use_ssl = port in (1025, 465)
 
-
-@router.delete("/artworks/{artwork_id}")
-async def delete_artwork(artwork_id: str):
-    """Delete artwork"""
-    result = await db.artworks.delete_one({"id": artwork_id})
-    if result.deleted_count == 0:
-        raise HTTPException(status_code=404, detail="Artwork not found")
-    return {"success": True, "message": "Artwork deleted successfully"}
+    if use_ssl:
+        with smtplib.SMTP_SSL(host, port, context=ctx) as s:
+            s.login(user, pwd)
+            s.sendmail(user, recipients, msg.as_string())
+    else:
+        with smtplib.SMTP(host, port) as s:
+            s.starttls(context=ctx)
+            s.login(user, pwd)
+            s.sendmail(user, recipients, msg.as_string())
 
 
-# Articles Routes
-@router.get("/articles")
-async def get_articles():
-    """Get all articles"""
-    articles = await db.articles.find({}, {"_id": 0}).to_list(1000)
-    return {"articles": articles}
 
-
-@router.get("/articles/{article_id}")
-async def get_article(article_id: str):
-    """Get single article by ID"""
-    article = await db.articles.find_one({"id": article_id}, {"_id": 0})
-    if not article:
-        raise HTTPException(status_code=404, detail="Article not found")
-    return {"article": article}
-
-
-@router.post("/articles", response_model=Article)
-async def create_article(article: ArticleCreate):
-    """Create new article"""
-    article_dict = article.dict()
-    article_obj = Article(**article_dict)
-    await db.articles.insert_one(article_obj.dict())
-    return article_obj
-
-
-@router.put("/articles/{article_id}", response_model=Article)
-async def update_article(article_id: str, article_update: ArticleUpdate):
-    """Update article"""
-    existing = await db.articles.find_one({"id": article_id})
-    if not existing:
-        raise HTTPException(status_code=404, detail="Article not found")
-    
-    update_data = {k: v for k, v in article_update.dict().items() if v is not None}
-    update_data["updated_at"] = datetime.utcnow()
-    
-    await db.articles.update_one(
-        {"id": article_id},
-        {"$set": update_data}
-    )
-    
-    updated = await db.articles.find_one({"id": article_id})
-    return Article(**updated)
-
-
-@router.delete("/articles/{article_id}")
-async def delete_article(article_id: str):
-    """Delete article"""
-    result = await db.articles.delete_one({"id": article_id})
-    if result.deleted_count == 0:
-        raise HTTPException(status_code=404, detail="Article not found")
-    return {"success": True, "message": "Article deleted successfully"}
-
-
-# Bio Routes
-@router.get("/bio")
-async def get_bio():
-    """Get bio data"""
-    bio = await db.bio.find_one({"id": "bio_main"}, {"_id": 0})
-    if not bio:
-        raise HTTPException(status_code=404, detail="Bio not found")
-    return {"bio": bio}
-
-
-@router.put("/bio", response_model=Bio)
-async def update_bio(bio_update: BioUpdate):
-    """Update bio data"""
-    existing = await db.bio.find_one({"id": "bio_main"})
-    if not existing:
-        raise HTTPException(status_code=404, detail="Bio not found")
-    
-    update_data = {k: v for k, v in bio_update.dict().items() if v is not None}
-    update_data["updated_at"] = datetime.utcnow()
-    
-    await db.bio.update_one(
-        {"id": "bio_main"},
-        {"$set": update_data}
-    )
-    
-    updated = await db.bio.find_one({"id": "bio_main"})
-    return Bio(**updated)
-
-
-# Contact Routes
 @router.post("/contact")
-async def submit_contact(contact: ContactMessageCreate):
-    """Submit contact form"""
-    contact_dict = contact.dict()
-    contact_obj = ContactMessage(**contact_dict)
-    await db.contact_messages.insert_one(contact_obj.dict())
-    return {"success": True, "message": "Message sent successfully"}
+async def send_contact(payload: ContactIn):
+    print("DEBUG /contact payload:", payload.model_dump())
 
+    # (opzionale) salva su DB
+    db = get_db()
+    if db:
+        try:
+            await db.messages.insert_one(payload.model_dump())
+        except Exception as e:
+            print("Warn: salvataggio DB fallito:", e)
 
-@router.get("/contact-messages")
-async def get_contact_messages():
-    """Get all contact messages (for admin use)"""
-    messages = await db.contact_messages.find().sort("created_at", -1).to_list(1000)
-    return {"messages": messages}
+    # prepara email
+    subject = f"Nuovo messaggio dal sito: {payload.name}"
+    body = f"From: {payload.name} <{payload.email}>\n\n{payload.message}"
+
+    # invio email PROTETTO
+    try:
+        send_mail(subject, body)   # la tua funzione
+        print("DEBUG /contact: email inviata")
+    except Exception as e:
+        print("ERROR /contact: invio email fallito:", repr(e))
+
+    # rispondi SEMPRE qualcosa
+    return {"ok": True}

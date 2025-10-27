@@ -433,3 +433,31 @@ body {
   color: var(--color-white);
   border-color: var(--color-black);
 }
+
+.emergent-badge,
+a[href*="emergent"],
+[id*="emergent"],
+[class*="emergent"] {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+.image-box {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;        /* stesso spazio che avevi prima */
+  display: flex;
+  align-items: center;         /* centra V */
+  justify-content: center;     /* centra H */
+  overflow: hidden;
+  background: var(--color-gray-50, #f7f7f7); /* opzionale: “letterbox” chiaro */
+  border-radius: var(--radius-md, 10px);     /* opzionale */
+}
+
+.image-box .artwork-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;         /* NIENTE tagli */
+  object-position: center;     /* centro esatto */
+  display: block;
+}

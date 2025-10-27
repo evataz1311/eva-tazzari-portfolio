@@ -3,6 +3,8 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { translations } from '../data/mock';
 import { bioAPI } from '../services/api';
 import '../styles/portfolio.css';
+import { bioData as bioMock } from '../data/mock';
+
 
 const Bio = () => {
   const { t } = useLanguage();
@@ -10,25 +12,15 @@ const Bio = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchBio = async () => {
-      try {
-        const data = await bioAPI.get();
-        setBioData(data);
-      } catch (error) {
-        console.error('Error fetching bio:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchBio();
-  }, []);
+    setLoading(true);
+    setBioData(bioMock);
+    setLoading(false);
+}, []);
 
   if (loading) {
     return (
       <div style={{ paddingTop: '100px', textAlign: 'center', minHeight: '100vh' }}>
         <div className="container">
-          <p className="body-text">Loading...</p>
         </div>
       </div>
     );
@@ -54,13 +46,11 @@ const Bio = () => {
 
           <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
             {/* Portrait and Short Bio */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: 'var(--spacing-3xl)', alignItems: 'start', marginBottom: 'var(--spacing-3xl)' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 'var(--spacing-3xl)', alignItems: 'start', marginBottom: 'var(--spacing-3xl)' }}>
               <div>
-                <img 
-                  src={bioData.image} 
-                  alt="Eva Tazzari"
-                  style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover' }}
-                />
+                <img src={bioData.image} alt="Eva Tazzari" style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover' }} />
+
+
               </div>
               <div>
                 <p className="body-text" style={{ fontSize: '1.25rem', lineHeight: '1.8', marginBottom: 'var(--spacing-xl)' }}>

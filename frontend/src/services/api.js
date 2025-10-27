@@ -1,103 +1,49 @@
-import axios from 'axios';
+// frontend/src/services/api.js
+const API = process.env.REACT_APP_API_URL || "http://localhost:4000";
 
-const API_BASE = `${process.env.REACT_APP_BACKEND_URL}/api`;
+async function postJSON(url, data) {
+  const res = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+  if (!res.ok) {
+    const txt = await res.text().catch(() => "");
+    throw new Error(`HTTP ${res.status} ${txt}`);
+  }
+  return res.json();
+}
 
-// Transform backend data to frontend format (bilingual objects)
-const transformArtwork = (artwork) => ({
-  id: artwork.id,
-  title: { it: artwork.title_it, en: artwork.title_en },
-  year: artwork.year,
-  category: artwork.category,
-  technique: { it: artwork.technique_it, en: artwork.technique_en },
-  dimensions: artwork.dimensions,
-  description: { it: artwork.description_it, en: artwork.description_en },
-  series: artwork.series_it ? { it: artwork.series_it, en: artwork.series_en } : null,
-  exhibition: artwork.exhibition,
-  available: artwork.available,
-  image: artwork.image,
-  featured: artwork.featured
-});
+// --- MOCK DATA per liste/letture (finché non usi il backend) ---
+import { artworks as artworksMock, articles as articlesMock } from "../data/mock";
 
-const transformArticle = (article) => ({
-  id: article.id,
-  title: { it: article.title_it, en: article.title_en },
-  date: article.date,
-  excerpt: { it: article.excerpt_it, en: article.excerpt_en },
-  content: { it: article.content_it, en: article.content_en },
-  image: article.image,
-  featured: article.featured
-});
-
-const transformBio = (bio) => ({
-  short: { it: bio.short_it, en: bio.short_en },
-  extended: { it: bio.extended_it, en: bio.extended_en },
-  image: bio.image,
-  exhibitions: bio.exhibitions.map(ex => ({
-    year: ex.year,
-    event: { it: ex.event_it, en: ex.event_en }
-  }))
-});
-
+// Named export: artworksAPI
 export const artworksAPI = {
-  getAll: async (category) => {
-    const response = await axios.get(`${API_BASE}/artworks`, { params: category ? { category } : {} });
-    return response.data.artworks.map(transformArtwork);
+  async list() {
+    return artworksMock;
   },
-  getById: async (id) => {
-    const response = await axios.get(`${API_BASE}/artworks/${id}`);
-    return transformArtwork(response.data.artwork);
+  async getById(id) {
+    const n = Number(id);
+    return artworksMock.find((w) => w.id === n) || null;
   },
-  create: async (data) => {
-    const response = await axios.post(`${API_BASE}/artworks`, data);
-    return transformArtwork(response.data);
-  },
-  update: async (id, data) => {
-    const response = await axios.put(`${API_BASE}/artworks/${id}`, data);
-    return transformArtwork(response.data);
-  },
-  delete: async (id) => {
-    const response = await axios.delete(`${API_BASE}/artworks/${id}`);
-    return response.data;
-  }
 };
 
+// Named export: articlesAPI
 export const articlesAPI = {
-  getAll: async () => {
-    const response = await axios.get(`${API_BASE}/articles`);
-    return response.data.articles.map(transformArticle);
+  async list() { return articlesMock; },
+  async getById(id) {
+    const n = Number(id);
+    return articlesMock.find(a => a.id === n) || null;
   },
-  getById: async (id) => {
-    const response = await axios.get(`${API_BASE}/articles/${id}`);
-    return transformArticle(response.data.article);
-  },
-  create: async (data) => {
-    const response = await axios.post(`${API_BASE}/articles`, data);
-    return transformArticle(response.data);
-  },
-  update: async (id, data) => {
-    const response = await axios.put(`${API_BASE}/articles/${id}`, data);
-    return transformArticle(response.data);
-  },
-  delete: async (id) => {
-    const response = await axios.delete(`${API_BASE}/articles/${id}`);
-    return response.data;
-  }
-};
+  };
 
-export const bioAPI = {
-  get: async () => {
-    const response = await axios.get(`${API_BASE}/bio`);
-    return transformBio(response.data.bio);
-  },
-  update: async (data) => {
-    const response = await axios.put(`${API_BASE}/bio`, data);
-    return transformBio(response.data);
-  }
-};
 
+// Named export: contactAPI
 export const contactAPI = {
-  submit: async (data) => {
-    const response = await axios.post(`${API_BASE}/contact`, data);
-    return response.data;
-  }
+  submit(formData) {
+    return postJSON(`${API}/api/contact`, formData);
+  },
 };
+
+// Export di comodo (non usato dai tuoi import, ma utile)
+export default { artworksAPI, articlesAPI, contactAPI };

@@ -1,146 +1,176 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
-import { useLanguage } from '../contexts/LanguageContext';
-import { translations } from '../data/mock';
-import { artworksAPI } from '../services/api';
-import { ArrowLeft, Calendar, Ruler, Layers, MapPin, CheckCircle, XCircle } from 'lucide-react';
-import '../styles/portfolio.css';
+import React from "react";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import { useLanguage } from "../contexts/LanguageContext";
+import { translations, artworks as artworksMock } from "../data/mock";
+import {
+  ArrowLeft,
+  Calendar,
+  Ruler,
+  Layers,
+  MapPin,
+  CheckCircle,
+  XCircle,
+} from "lucide-react";
+import "../styles/portfolio.css";
 
 const WorkDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { t } = useLanguage();
-  const [work, setWork] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
 
-  useEffect(() => {
-    const fetchWork = async () => {
-      try {
-        const data = await artworksAPI.getById(id);
-        setWork(data);
-      } catch (error) {
-        console.error('Error fetching artwork:', error);
-        setError(true);
-      } finally {
-        setLoading(false);
-      }
-    };
+  // trova l'opera per id (funziona anche se id è stringa)
+  const work = artworksMock.find((w) => String(w.id) === String(id));
 
-    fetchWork();
-  }, [id]);
-
-  if (loading) {
+  // se non trovata
+  if (!work) {
     return (
-      <div style={{ paddingTop: '120px', textAlign: 'center', minHeight: '100vh' }}>
-        <div className="container">
-          <p className="body-text">Loading...</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (error || !work) {
-    return (
-      <div style={{ paddingTop: '120px', textAlign: 'center' }}>
-        <div className="container">
-          <p className="body-text">{t({ it: 'Opera non trovata', en: 'Work not found' })}</p>
-          <Link to="/works" className="btn btn-outline" style={{ marginTop: 'var(--spacing-lg)' }}>
-            <ArrowLeft size={16} />
-            {t({ it: 'Torna alle opere', en: 'Back to works' })}
-          </Link>
-        </div>
+      <div style={{ paddingTop: "120px", textAlign: "center" }}>
+        <p className="body-text">
+          {t({ it: "Opera non trovata", en: "Work not found" })}
+        </p>
+        <button
+          onClick={() => navigate("/works")}
+          className="btn btn-outline"
+          style={{ marginTop: "var(--spacing-lg)" }}
+        >
+          <ArrowLeft size={16} /> {t({ it: "Torna alle opere", en: "Back to works" })}
+        </button>
       </div>
     );
   }
 
   return (
-    <div style={{ paddingTop: '100px' }}>
+    <div style={{ paddingTop: "100px" }}>
       <section className="section-spacing">
         <div className="container">
-          <button 
-            onClick={() => navigate('/works')}
-            className="btn btn-outline"
-            style={{ marginBottom: 'var(--spacing-xl)' }}
-          >
-            <ArrowLeft size={16} />
-            {t({ it: 'Torna alle opere', en: 'Back to works' })}
-          </button>
+          <Link to="/works" className="btn btn-outline" style={{ marginBottom: "var(--spacing-lg)" }}>
+            <ArrowLeft size={16} /> {t({ it: "Torna alle opere", en: "Back to works" })}
+          </Link>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: 'var(--spacing-3xl)', alignItems: 'start' }}>
-            {/* Image */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1.5fr 1fr",
+              gap: "var(--spacing-3xl)",
+              alignItems: "start",
+            }}
+          >
+            {/* Immagine */}
             <div>
-              <img 
-                src={work.image} 
+              <img
+                src={work.image}
                 alt={t(work.title)}
-                style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover' }}
+                onError={(e) => { e.currentTarget.src = '/media/placeholder.jpg'; }}
+                style={{ width: "100%", aspectRatio: "3/4", objectFit: "cover" }}
               />
             </div>
 
-            {/* Details */}
+            {/* Dettagli */}
             <div>
-              <span className="category-badge" style={{ marginBottom: 'var(--spacing-md)', display: 'inline-block' }}>
+              <span
+                className="category-badge"
+                style={{ marginBottom: "var(--spacing-md)", display: "inline-block" }}
+              >
                 {t(translations.works[work.category])}
               </span>
-              <h1 className="section-title" style={{ marginBottom: 'var(--spacing-lg)' }}>
+
+              <h1 className="section-title" style={{ marginBottom: "var(--spacing-lg)" }}>
                 {t(work.title)}
               </h1>
 
-              <div style={{ marginBottom: 'var(--spacing-xl)' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-sm)', marginBottom: 'var(--spacing-md)' }}>
-                  <Calendar size={18} style={{ color: 'var(--color-gray-500)' }} />
+              {/* Metadati */}
+              <div style={{ marginBottom: "var(--spacing-xl)" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "var(--spacing-sm)",
+                    marginBottom: "var(--spacing-md)",
+                  }}
+                >
+                  <Calendar size={18} style={{ color: "var(--color-gray-500)" }} />
                   <span className="small-text">
                     <strong>{t(translations.works.year)}:</strong> {work.year}
                   </span>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-sm)', marginBottom: 'var(--spacing-md)' }}>
-                  <Layers size={18} style={{ color: 'var(--color-gray-500)' }} />
+
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "var(--spacing-sm)",
+                    marginBottom: "var(--spacing-md)",
+                  }}
+                >
+                  <Layers size={18} style={{ color: "var(--color-gray-500)" }} />
                   <span className="small-text">
                     <strong>{t(translations.works.technique)}:</strong> {t(work.technique)}
                   </span>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-sm)', marginBottom: 'var(--spacing-md)' }}>
-                  <Ruler size={18} style={{ color: 'var(--color-gray-500)' }} />
+
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "var(--spacing-sm)",
+                    marginBottom: "var(--spacing-md)",
+                  }}
+                >
+                  <Ruler size={18} style={{ color: "var(--color-gray-500)" }} />
                   <span className="small-text">
                     <strong>{t(translations.works.dimensions)}:</strong> {work.dimensions}
                   </span>
                 </div>
+
                 {work.series && (
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-sm)', marginBottom: 'var(--spacing-md)' }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "var(--spacing-sm)",
+                      marginBottom: "var(--spacing-md)",
+                    }}
+                  >
+                    <MapPin size={18} style={{ color: "var(--color-gray-500)" }} />
                     <span className="small-text">
                       <strong>{t(translations.works.series)}:</strong> {t(work.series)}
                     </span>
                   </div>
                 )}
-                {work.exhibition && (
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-sm)', marginBottom: 'var(--spacing-md)' }}>
-                    <MapPin size={18} style={{ color: 'var(--color-gray-500)' }} />
-                    <span className="small-text">
-                      <strong>{t(translations.works.exhibition)}:</strong> {work.exhibition}
-                    </span>
-                  </div>
-                )}
-                <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-sm)', marginTop: 'var(--spacing-lg)' }}>
-                  {work.available ? (
-                    <CheckCircle size={18} style={{ color: '#10b981' }} />
-                  ) : (
-                    <XCircle size={18} style={{ color: 'var(--color-gray-400)' }} />
-                  )}
-                  <span className="small-text" style={{ fontWeight: 500 }}>
-                    {work.available ? t(translations.works.available) : t(translations.works.sold)}
-                  </span>
+
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "var(--spacing-sm)",
+                    marginTop: "var(--spacing-lg)",
+                  }}
+                >
+                  {work.available === true ? (
+                     <>
+                        <CheckCircle size={18} style={{ color: "#10b981" }} />
+                        <span className="small-text">{t(translations.works.available)}</span>
+                     </>
+                  ) : work.available === false ? (
+                    <>
+                      <XCircle size={18} style={{ color: "var(--color-gray-400)" }} />
+                      <span className="small-text">{t(translations.works.sold)}</span>
+                     </>
+                  ) : null}
                 </div>
               </div>
 
-              <div style={{ paddingTop: 'var(--spacing-lg)', borderTop: '1px solid var(--color-gray-200)' }}>
-                <p className="body-text">{t(work.description)}</p>
-              </div>
+              {/* Descrizione */}
+              <p
+                className="body-text"
+                style={{ fontSize: "1.1rem", lineHeight: "1.8", marginBottom: "var(--spacing-xl)" }}
+              >
+                {t(work.description)}
+              </p>
 
-              <div style={{ marginTop: 'var(--spacing-2xl)' }}>
-                <Link to="/contact" className="btn btn-primary">
-                  {t({ it: 'Richiedi informazioni', en: 'Request information' })}
-                </Link>
-              </div>
+              <Link to="/contact" className="btn btn-primary">
+                {t({ it: "Richiedi informazioni", en: "Request information" })}
+              </Link>
             </div>
           </div>
         </div>

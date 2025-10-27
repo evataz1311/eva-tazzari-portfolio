@@ -1,104 +1,54 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { useLanguage } from '../contexts/LanguageContext';
-import { translations } from '../data/mock';
-import { articlesAPI } from '../services/api';
-import { ArrowRight, Calendar } from 'lucide-react';
-import '../styles/portfolio.css';
+import { useEffect, useState } from "react";
+import { articlesAPI } from "../services/api";
+import { useLanguage } from "../contexts/LanguageContext";
+import { translations } from "../data/mock";
+import { Link } from "react-router-dom";
 
-const Articles = () => {
-  const { t } = useLanguage();
+export default function Articles() {
+  const { lang, t } = useLanguage();
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchArticles = async () => {
+    (async () => {
       try {
-        const data = await articlesAPI.getAll();
-        setArticles(data);
-      } catch (error) {
-        console.error('Error fetching articles:', error);
+        const list = await articlesAPI.list();
+        setArticles(Array.isArray(list) ? list : []);
+      } catch (e) {
+        console.error("Errore caricamento articoli:", e);
+        setArticles([]);
       } finally {
         setLoading(false);
       }
-    };
-
-    fetchArticles();
+    })();
   }, []);
 
-  if (loading) {
-    return (
-      <div style={{ paddingTop: '100px', textAlign: 'center', minHeight: '100vh' }}>
-        <div className="container">
-          <p className="body-text">Loading...</p>
-        </div>
-      </div>
-    );
-  }
+  if (loading) return <div style={{ padding: 16 }}>Caricamento…</div>;
+  if (!articles.length) return <div style={{ padding: 16 }}>Nessun articolo</div>;
 
   return (
-    <div style={{ paddingTop: '80px' }}>
-      <section className="section-spacing">
-        <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: 'var(--spacing-2xl)' }}>
-            <h1 className="section-title">{t(translations.articles.title)}</h1>
-          </div>
+    <div className="container">
+      <h1 className="page-title">{t(translations.articles.title)}</h1>
 
-          <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
-            <div style={{ display: 'grid', gap: 'var(--spacing-3xl)' }}>
-              {articles.map((article, index) => (
-                <article 
-                  key={article.id}
-                  className="fade-in-up"
-                  style={{ 
-                    animationDelay: `${index * 0.1}s`,
-                    paddingBottom: 'var(--spacing-3xl)',
-                    borderBottom: index < articles.length - 1 ? '1px solid var(--color-gray-200)' : 'none'
-                  }}
-                >
-                  <Link to={`/articles/${article.id}`} style={{ textDecoration: 'none' }}>
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: 'var(--spacing-2xl)', alignItems: 'center' }}>
-                      <div className="image-overlay" style={{ aspectRatio: '4/3', overflow: 'hidden' }}>
-                        <img 
-                          src={article.image} 
-                          alt={t(article.title)}
-                          style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }}
-                          onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-                          onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
-                        />
-                      </div>
-                      <div>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-xs)', marginBottom: 'var(--spacing-sm)' }}>
-                          <Calendar size={14} style={{ color: 'var(--color-gray-500)' }} />
-                          <span className="small-text">
-                            {new Date(article.date).toLocaleDateString(t({ it: 'it-IT', en: 'en-US' }), { 
-                              year: 'numeric', 
-                              month: 'long', 
-                              day: 'numeric' 
-                            })}
-                          </span>
-                        </div>
-                        <h2 className="artwork-title" style={{ marginBottom: 'var(--spacing-md)' }}>
-                          {t(article.title)}
-                        </h2>
-                        <p className="body-text" style={{ marginBottom: 'var(--spacing-lg)' }}>
-                          {t(article.excerpt)}
-                        </p>
-                        <span className="nav-link" style={{ display: 'inline-flex', alignItems: 'center', gap: 'var(--spacing-xs)' }}>
-                          {t(translations.home.readMore)}
-                          <ArrowRight size={16} />
-                        </span>
-                      </div>
-                    </div>
-                  </Link>
-                </article>
-              ))}
+      <div className="grid">
+        {articles.map((a) => (
+          <article key={a.id} className="card">
+            {a.image && (
+              <img src={a.image} alt={a.title?.[lang] || a.title?.it || "Article"} />
+            )}
+            <div className="card-body">
+              <h2 className="card-title">{a.title?.[lang] || a.title?.it}</h2>
+              {a.date && (
+                <div className="muted">
+                  {t(translations.articles.published)} {a.date}
+                </div>
+              )}
+              <p className="card-text">{a.excerpt?.[lang] || a.excerpt?.it}</p>
+              <Link to={`/articles/${a.id}`} className="btn">Leggi</Link>
             </div>
-          </div>
-        </div>
-      </section>
+          </article>
+        ))}
+      </div>
     </div>
   );
-};
-
-export default Articles;
+}

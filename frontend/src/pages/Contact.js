@@ -85,15 +85,16 @@ const Contact = () => {
                       {t({ it: 'Studio', en: 'Studio' })}
                     </span>
                     <p className="body-text" style={{ margin: 0 }}>
-                      Bologna, Italia
+                      {t({ it: 'Málaga, Spagna', en: 'Málaga, Spain' })}
+  
                     </p>
                   </div>
 
                   <div style={{ paddingTop: 'var(--spacing-lg)' }}>
                     <p className="body-text" style={{ color: 'var(--color-gray-600)' }}>
                       {t({ 
-                        it: 'Disponibile per commissioni, collaborazioni e visite in studio su appuntamento.',
-                        en: 'Available for commissions, collaborations, and studio visits by appointment.'
+                        it: 'Disponibile per collaborazioni.',
+                        en: 'Available for collaborations.'
                       })}
                     </p>
                   </div>

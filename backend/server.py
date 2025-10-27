@@ -1,53 +1,36 @@
-from fastapi import FastAPI, APIRouter
+# backend/server.py
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
-from starlette.middleware.cors import CORSMiddleware
-from motor.motor_asyncio import AsyncIOMotorClient
 import os
-import logging
-from pathlib import Path
 
+from db import init_db, close_db   # <--- NEW
+# NON importare più motor qui
 
-ROOT_DIR = Path(__file__).parent
-load_dotenv(ROOT_DIR / '.env')
-
-# MongoDB connection
-mongo_url = os.environ['MONGO_URL']
-client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ['DB_NAME']]
-
-# Create the main app without a prefix
+load_dotenv()
 app = FastAPI()
 
-# Create a router with the /api prefix
-api_router = APIRouter(prefix="/api")
-
-# Health check route
-@api_router.get("/")
-async def root():
-    return {"message": "Eva Tazzari Portfolio API"}
-
-# Import and include routes
-from routes import router as portfolio_router
-api_router.include_router(portfolio_router)
-
-# Include the router in the main app
-app.include_router(api_router)
-
+origins = os.getenv("CORS_ORIGINS", "http://localhost:3000").split(",")
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
-    allow_origins=os.environ.get('CORS_ORIGINS', '*').split(','),
+    allow_origins=[o.strip() for o in origins if o.strip()],
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
-logger = logging.getLogger(__name__)
+# monta le route /api
+from routes import router as api_router   # <--- OK, ora non c’è più loop
+app.include_router(api_router, prefix="/api")
+
+@app.on_event("startup")
+async def startup():
+    await init_db(os.getenv("MONGO_URL"), os.getenv("DB_NAME"))
 
 @app.on_event("shutdown")
-async def shutdown_db_client():
-    client.close()
+async def shutdown():
+    close_db()
+
+@app.get("/api")
+async def root():
+    return {"message": "Eva Tazzari portfolio API"}

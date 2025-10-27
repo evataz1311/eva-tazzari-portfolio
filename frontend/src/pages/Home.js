@@ -51,9 +51,12 @@ const Home = () => {
             <h1 className="hero-title" style={{ marginBottom: 'var(--spacing-xl)' }}>
               Eva Tazzari
             </h1>
-            <p className="hero-statement">
+            
+            <p className="hero-statement" style={{ whiteSpace: 'pre-line' }}>
               {t(translations.home.hero)}
             </p>
+
+
           </div>
         </div>
       </section>
