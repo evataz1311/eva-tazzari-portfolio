@@ -71,7 +71,7 @@ export const artworks = [
   year: 2025,
   category: 'wearable',
   technique: { it: 'tecnica mista', en: 'Mixed media' },
-  dimensions: 'variabile x variabile x variabile cm',
+  dimensions: 'variabile',
   description: { 
     it: 'Un abito-gabbia, fatto di piastrelle, di volti di Barbie: icona di un ideale imposto. IMPERFEZIONE. DIVERSITÀ. Crepe e scheggiature diventano forza. Ogni corpo lo trasforma: l’abito cambia, si fa opera diversa. La passerella è performance. Il corpo è al centro. La diversità è bellezza.', 
     en: 'A cage-dress made of tiles, of Barbie faces: an icon of an imposed ideal. IMPERFECTION. DIVERSITY. Cracks and chips become strength. Every body transforms it: the dress changes, becoming a different work. The runway is performance. The body is at the center. Diversity is beauty.' 
@@ -85,7 +85,7 @@ export const artworks = [
   year: 2025,
   category: 'wearable',
   technique: { it: 'mista', en: 'Mixed media' },
-  dimensions: 'variabile x variabile x variabile cm',
+  dimensions: 'variabile',
   description: { 
     it: 'Una cintura come gesto di ribellione silenziosa. Volti replicati, icone di un ideale imposto, si incrinano, si sporcano, si fanno umani. Ogni piastrella, un frammento imperfetto. La serialità si rompe. La bellezza si ricostruisce nelle crepe, nel difetto che diventa identità.', 
     en: 'A belt as a gesture of silent rebellion. Replicated faces, icons of an imposed ideal, crack, get soiled, become human. Each tile is an imperfect fragment. Seriality breaks. Beauty is rebuilt in the cracks, in the flaw that becomes identity.' 
@@ -99,7 +99,7 @@ image: '/media/works/Fragment of the cage White2.png',
   year: 2025,
   category: 'wearable',
   technique: { it: 'mista', en: 'Mixed media' },
-  dimensions: 'variabile x variabile x variabile cm',
+  dimensions: 'variabile',
   description: { 
     it: 'Una cintura come gesto di ribellione silenziosa. Volti replicati, icone di un ideale imposto, si incrinano, si sporcano, si fanno umani. Ogni piastrella, un frammento imperfetto. La serialità si rompe. La bellezza si ricostruisce nelle crepe, nel difetto che diventa identità.', 
     en: 'A belt as a gesture of silent rebellion. Replicated faces, icons of an imposed ideal, crack, get soiled, become human. Each tile is an imperfect fragment. Seriality breaks. Beauty is rebuilt in the cracks, in the flaw that becomes identity.' 
@@ -127,12 +127,12 @@ image: '/media/works/human low cost 2.jpeg',
   year: 2025,
   category: 'wearable',
   technique: { it: 'nan', en: '' },
-  dimensions: '145 x 190 x variabile cm',
+  dimensions: '145 x 190 x variabile',
   description: { 
     it: 'L’opera diventa corpo, movimento, presenza. Il volto blu di Blindness si trasforma su seta, cambia con chi lo indossa. Arte e moda si fondono in un unico gesto: ogni piega, ogni luce riflessa reinventa l’opera, rendendola viva, sensibile, umana.', 
     en: 'The work becomes body, movement, presence. The blue face of Blindness transforms on silk, changing with the wearer. Art and fashion merge into a single gesture: every fold, every reflected light reinvents the work, making it alive, sensitive, human.' 
   },
-image: '/media/works/blindness foulard.jpg',
+image: '/media/works/blindness foulard.png',
   featured: true
 },
 {
@@ -169,7 +169,7 @@ image: '/media/works/homologacion_black.jpg',
   year: 2024,
   category: 'installation',
   technique: { it: 'tecnica mista', en: 'Mixed media' },
-  dimensions: 'variabile x variabile x variabile cm',
+  dimensions: 'variabile',
   description: { 
     it: 'Lo stereotipo di corpo perfetto offerto al fuoco. La luce arde, riflette, purifica e consuma. Il sacrificio è silenzioso: la perfezione si immola sull’altare della tecnologia. La bambola giace su un’ara sacra. La pelle liscia, il corpo standardizzato, il volto senza espressione. L’immagine del desiderio diventa rito. Il fuoco non libera, brucia l’identità: la bellezza la sua vittima.', 
     en: 'The stereotype of the perfect body offered to the fire. Light burns, reflects, purifies, and consumes. The sacrifice is silent: perfection immolates itself on the altar of technology. The doll lies on a sacred altar. Smooth skin, standardized body, expressionless face. The image of desire becomes a rite. The fire does not free; it burns identity: beauty is its victim.' 
@@ -225,7 +225,7 @@ image: '/media/works/Progetto Essere Umani soggetto 1.png',
   year: 2024,
   category: 'installation',
   technique: { it: 'tecnica mista', en: 'Mixed media' },
-  dimensions: 'variabile x variabile x variabile cm',
+  dimensions: 'variabile',
   description: { 
     it: 'Quattro teste di neonato rinchiuse in strutture metalliche, vecchi case di computer. La fragilità dell’origine incontra la freddezza del sistema. Le teste, immobili, sembrano respirare il vuoto tecnologico che le contiene. Ogni modulo è un frammento di crescita artificiale, un organismo in espansione. La materia tenera diventa parte della macchina, la nascita si trasforma in produzione.', 
     en: 'Four newborn heads enclosed in metal structures, old computer cases. The fragility of origin meets the coldness of the system. The heads, motionless, seem to breathe the technological void that contains them. Each module is a fragment of artificial growth, an organism in expansion. The tender matter becomes part of the machine; birth is transformed into production.' 
@@ -407,7 +407,7 @@ image: '/media/works/lambs.jpg',
   year: 2023,
   category: 'installation',
   technique: { it: 'tecnica mista', en: 'Mixed media' },
-  dimensions: 'variabile x variabile x variabile cm',
+  dimensions: 'variabile',
   description: { 
     it: 'Umanità e tecnologia si confondono. L’infanzia si fa oggetto, la dolcezza plastica diventa inquieta. Corpi assenti, volti replicati, identità prodotte in serie. Un archivio muto del nostro tempo digitale.', 
     en: 'Humanity and technology blur. Childhood becomes object; plastic sweetness turns uneasy. Absent bodies, replicated faces, identities produced in series. A mute archive of our digital time.' 
@@ -449,7 +449,7 @@ image: '/media/works/blindness 1.png',
   year: 2023,
   category: 'sculpture',
   technique: { it: 'tecnica mista', en: 'Mixed media' },
-  dimensions: 'variabile x variabile x variabile cm',
+  dimensions: 'variabile',
   description: { 
     it: 'Una griglia di auto rosse, perfette, allineate. In mezzo, una sola dorata rompe l’ordine. Il rosso è conformità, il dorato resistenza. Un invito a scegliere la propria direzione, anche quando il mondo impone una corsia unica.', 
     en: 'A grid of red cars, perfect and aligned. In the middle, a single golden one breaks the order. Red is conformity; gold is resistance. An invitation to choose one’s own direction, even when the world imposes a single lane.' 
