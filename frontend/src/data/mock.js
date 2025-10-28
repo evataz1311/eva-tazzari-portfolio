@@ -19,8 +19,8 @@ I create artworks as open questions.
 The rest is up to the viewer.`,
     },
     intro: {
-      it: 'Eva Tazzari è un\'artista e scultrice contemporanea italiana che esplora l\'intersezione tra corpo, tecnologia e natura. Le sue opere sfidano le convenzioni attraverso forme organiche e materiali innovativi.',
-      en: 'Eva Tazzari is an Italian contemporary artist and sculptor who explores the intersection between body, technology, and nature. Her works challenge conventions through organic forms and innovative materials.'
+      it: 'Io sono Eva Tazzari. Uso il corpo, la tecnologia, la natura e i giocattoli come linguaggi che si scontrano e si fondono. Scolpisco domande. Ogni opera è un esperimento di connessione, una frattura viva tra umano e artificiale.',
+      en: 'I am Eva Tazzari. I use the body, technology, nature, and toys as languages that collide and merge. I sculpt questions. Each work is an experiment in connection, a living fracture between the human and the artificial.'
     },
     featured: { it: 'Opere in Evidenza', en: 'Featured Works' },
     latest: { it: 'Ultimo Articolo', en: 'Latest Article' },
