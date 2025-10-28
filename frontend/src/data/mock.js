@@ -328,7 +328,7 @@ image: '/media/works/medusa.jpg',
     it: 'Un volto bianco, avvolto da una tastiera. Un ponte tra due mondi. L’uomo e la macchina. La visione si spegne dietro un filtro di codice. “TransHuman” racconta in silenzio: la connessione diventa prigione e la parola, silenzio.', 
     en: 'A white face, wrapped in a keyboard. A bridge between two worlds: the human and the machine. Vision goes dark behind a filter of code. “TransHuman” speaks in silence: connection becomes prison and the word, silence.' 
   },
-image: '/media/works/las senoritas 3.jpg',
+image: '/media/works/transhuman_1.jpg',
   featured: true
 },
 {
@@ -342,7 +342,7 @@ image: '/media/works/las senoritas 3.jpg',
     it: 'Un volto nero emerge da un campo di tasti sparsi. Lettere, comandi, frammenti di linguaggio si mescolano alla pelle. L’umano e il digitale si confondono: la parola si fa codice, il respiro diventa input. Un corpo in rete, connesso e perduto.', 
     en: 'A black face emerges from a field of scattered keys. Letters, commands, fragments of language mingle with the skin. The human and the digital blur: the word becomes code, breath becomes input. A body in the network, connected and lost.' 
   },
-image: '/media/works/neural eugenics.jpg',
+image: '/media/works/Transhuman.png',
   featured: true
 },
 {
@@ -356,7 +356,7 @@ image: '/media/works/neural eugenics.jpg',
     it: 'Corpi di bambole intrecciati in un abbraccio ambiguo e rituale. “Las Señoritas” mette a nudo la femminilità artificiale, la trasforma in gesto consapevole. La plastica e il gesso, il dorato e il carne: contrasti che diventano libertà. Bellezza imperfetta, ribelle, autentica.', 
     en: 'Doll bodies intertwined in an ambiguous, ritual embrace. “Las Señoritas” lays bare artificial femininity and turns it into a conscious gesture. Plastic and plaster, gold and flesh: contrasts that become freedom. Imperfect, rebellious, authentic beauty.' 
   },
-image: '/media/works/homologacion 6 pannelli.png',
+image: '/media/works/las senoritas 3.jpg',
   featured: true
 },
 {
@@ -370,7 +370,7 @@ image: '/media/works/homologacion 6 pannelli.png',
     it: 'Un feto di gesso, puro e immobile, è nutrito da un cordone ombelicale di cavi colorati che come vene artificiali lo tengono in vita. “Neural Eugenics” indaga il limite tra progresso e controllo, tra nascita e manipolazione. Un corpo fragile nel dominio della tecnologia: promessa di vita o esperimento di potere?', 
     en: 'A plaster fetus, pure and motionless, is nourished by an umbilical cord of colored cables that, like artificial veins, keep it alive. “Neural Eugenics” probes the boundary between progress and control, between birth and manipulation. A fragile body in the domain of technology: a promise of life or an experiment in power?' 
   },
-image: '/media/works/las senoritas.jpg',
+image: '/media/works/neural eugenics.jpg',
   featured: true
 },
 {
@@ -384,7 +384,7 @@ image: '/media/works/las senoritas.jpg',
     it: 'Volti femminili in gesso, ripetuti e ordinati, raccontano l’omologazione. Tutti uguali, eppure fragilmente diversi. Alcune formelle si incrinano, resistono. L’opera riflette sulla perdita dell’identità nell’era della conformità e sul coraggio sottile di chi, anche spezzandosi, resta sé stesso.', 
     en: 'Female plaster faces, repeated and ordered, tell of homogenization. All the same, yet fragilely different. Some tiles crack and resist. The work reflects on the loss of identity in the age of conformity and on the subtle courage of those who, even while breaking, remain themselves.' 
   },
-image: '/media/works/human low cost 2.jpeg',
+image: '/media/works/homogolation 6 pannelli.png',
   featured: true
 },
 {
@@ -398,7 +398,7 @@ image: '/media/works/human low cost 2.jpeg',
     it: 'Bambole intrecciate in una danza sospesa tra erotismo e ironia. Corpi perfetti e plastici si sfiorano su un fondo dorato, tra desiderio e artificio. “Las Señoritas” racconta la mercificazione del femminile e la libertà di chi sceglie di mostrarsi oltre lo stereotipo.', 
     en: 'Dolls intertwined in a dance suspended between eroticism and irony. Perfect, plastic bodies brush against each other on a golden ground, between desire and artifice. “Las Señoritas” tells of the commodification of the feminine and the freedom of those who choose to show themselves beyond the stereotype.' 
   },
-image: '/media/works/lambs.jpg',
+image: '/media/works/las senoritas.jpg',
   featured: true
 },
 {
