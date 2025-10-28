@@ -279,7 +279,7 @@ image: '/media/works/transhuman_red.jpg',
   id: 16,
   title: { it: 'Senza titolo installazione luminosa', en: 'Senza titolo installazione luminosa' },
   year: 2024,
-  category: 'sculpture',
+  category: 'installation',
   technique: { it: 'tecnica mista', en: 'Mixed media' },
   dimensions: '60 x 40 x 10 cm',
   description: { 
