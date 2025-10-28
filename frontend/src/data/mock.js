@@ -76,7 +76,7 @@ export const artworks = [
     it: 'Un abito-gabbia, fatto di piastrelle, di volti di Barbie: icona di un ideale imposto. IMPERFEZIONE. DIVERSITÀ. Crepe e scheggiature diventano forza. Ogni corpo lo trasforma: l’abito cambia, si fa opera diversa. La passerella è performance. Il corpo è al centro. La diversità è bellezza.', 
     en: 'A cage-dress made of tiles, of Barbie faces: an icon of an imposed ideal. IMPERFECTION. DIVERSITY. Cracks and chips become strength. Every body transforms it: the dress changes, becoming a different work. The runway is performance. The body is at the center. Diversity is beauty.' 
   },
-  image: '/media/works/the beautiful cage.jpg',
+  image: '/media/works/the beautiful cage.JPG',
   featured: true
 },
 {
