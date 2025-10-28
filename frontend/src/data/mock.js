@@ -384,7 +384,7 @@ image: '/media/works/neural eugenics.jpg',
     it: 'Volti femminili in gesso, ripetuti e ordinati, raccontano l’omologazione. Tutti uguali, eppure fragilmente diversi. Alcune formelle si incrinano, resistono. L’opera riflette sulla perdita dell’identità nell’era della conformità e sul coraggio sottile di chi, anche spezzandosi, resta sé stesso.', 
     en: 'Female plaster faces, repeated and ordered, tell of homogenization. All the same, yet fragilely different. Some tiles crack and resist. The work reflects on the loss of identity in the age of conformity and on the subtle courage of those who, even while breaking, remain themselves.' 
   },
-image: '/media/works/homogolation 6 pannelli.png',
+image: '/media/works/homologacion 6 pannelli.png',
   featured: true
 },
 {
