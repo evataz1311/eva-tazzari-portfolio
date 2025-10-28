@@ -660,55 +660,21 @@ export const articles = [
   {
     id: 1,
     title: {
-      it: 'La Bellezza nelle Fratture: Arte e Tecnologia',
-      en: 'Beauty in Fractures: Art and Technology'
+      it: '',
+      en: ''
     },
-    date: '2024-01-15',
+    date: '',
     excerpt: {
-      it: 'Una riflessione sul rapporto tra arte contemporanea e innovazione tecnologica, e come le fratture digitali possano diventare spazi di bellezza.',
-      en: 'A reflection on the relationship between contemporary art and technological innovation, and how digital fractures can become spaces of beauty.'
+      it: '',
+      en: ''
     },
     content: {
-      it: 'Nel mondo contemporaneo, la tecnologia ha trasformato radicalmente il nostro modo di percepire e creare arte. Le fratture che emergono dall\'impatto tecnologico sulla nostra vita quotidiana non sono solo cicatrici, ma aperture verso nuove possibilità espressive. Come artista, cerco di esplorare questi spazi intermedi, dove il corpo incontra la macchina, dove il naturale si fonde con l\'artificiale. Le mie sculture indossabili nascono da questa ricerca: non sono solo oggetti estetici, ma dispositivi concettuali che interrogano la nostra identità nell\'era digitale.',
-      en: 'In the contemporary world, technology has radically transformed our way of perceiving and creating art. The fractures that emerge from technological impact on our daily lives are not just scars, but openings toward new expressive possibilities. As an artist, I seek to explore these intermediate spaces, where body meets machine, where natural merges with artificial. My wearable sculptures are born from this research: they are not just aesthetic objects, but conceptual devices questioning our identity in the digital age.'
+      it: '',
+      en: ''
     },
-    image: 'https://images.unsplash.com/photo-1561214115-f2f134cc4912?w=800&q=80',
+    image: '',
     featured: true
   },
-  {
-    id: 2,
-    title: {
-      it: 'Materiali del Futuro: Tradizione e Innovazione',
-      en: 'Materials of the Future: Tradition and Innovation'
-    },
-    date: '2023-11-22',
-    excerpt: {
-      it: 'Come il dialogo tra materiali tradizionali e contemporanei apre nuove possibilità espressive nella scultura.',
-      en: 'How dialogue between traditional and contemporary materials opens new expressive possibilities in sculpture.'
-    },
-    content: {
-      it: 'La scelta dei materiali in scultura non è mai neutrale. Quando lavoro il bronzo accanto alle fibre ottiche, quando accosto il marmo ai polimeri bio-compatibili, sto creando un dialogo tra epoche e visioni del mondo diverse. Questa ibridazione materica riflette la condizione contemporanea: siamo esseri biologici che vivono in un mondo sempre più tecnologico, corpi antichi in ambienti digitali.',
-      en: 'The choice of materials in sculpture is never neutral. When I work bronze alongside fiber optics, when I juxtapose marble with bio-compatible polymers, I am creating a dialogue between different eras and worldviews. This material hybridization reflects the contemporary condition: we are biological beings living in an increasingly technological world, ancient bodies in digital environments.'
-    },
-    image: 'https://images.unsplash.com/photo-1547826039-bfc35e0f1ea8?w=800&q=80',
-    featured: false
-  },
-  {
-    id: 3,
-    title: {
-      it: 'Il Corpo come Interfaccia',
-      en: 'The Body as Interface'
-    },
-    date: '2023-09-10',
-    excerpt: {
-      it: 'Riflessioni sulle sculture indossabili e il corpo come punto di contatto tra umano e tecnologico.',
-      en: 'Reflections on wearable sculptures and the body as a point of contact between human and technological.'
-    },
-    content: {
-      it: 'Le mie sculture indossabili trasformano il corpo in un\'interfaccia viva tra dimensione biologica e digitale. Non sono semplici gioielli o accessori, ma dispositivi concettuali che interrogano il nostro rapporto con la tecnologia. Quando indossi una mia opera, diventi parte di un dialogo più ampio sulla natura dell\'identità contemporanea.',
-      en: 'My wearable sculptures transform the body into a living interface between biological and digital dimensions. They are not simple jewelry or accessories, but conceptual devices questioning our relationship with technology. When you wear one of my works, you become part of a broader dialogue on the nature of contemporary identity.'
-    },
-    image: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800&q=80',
-    featured: false
-  }
+  
+   
 ];
