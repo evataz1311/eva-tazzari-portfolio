@@ -461,3 +461,30 @@ a[href*="emergent"],
   object-position: center;     /* centro esatto */
   display: block;
 }
+/* Spaziature più compatte solo per la pagina Bio */
+.page-bio .section-title {
+  margin-bottom: 2rem;          /* riduce spazio tra "Bio" e foto */
+}
+
+.page-bio .bio-hero {
+  margin: 0 auto 2rem;          /* riduce spazio sotto la foto */
+  max-width: 980px;             /* opzionale: limita larghezza foto */
+}
+
+.page-bio .bio-hero img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.page-bio .bio-text {
+  margin-top: 2rem;             /* riduce spazio prima del testo */
+  max-width: 900px;             /* opzionale: migliore leggibilità */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Se il top ha troppo padding, accorciamo SOLO in Bio */
+.page-bio .section-spacing {
+  padding-top: 24px;            /* prima era più alto */
+}
