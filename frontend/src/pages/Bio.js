@@ -35,7 +35,7 @@ const Bio = () => {
   }
 
   return (
-    <div className="page-bio" style={{ paddingTop: '80px' }}>
+    <div className="page-bio">
       <section className="section-spacing">
         <div className="container">
           <div className="bio-header" style={{ textAlign: 'center' }}>
