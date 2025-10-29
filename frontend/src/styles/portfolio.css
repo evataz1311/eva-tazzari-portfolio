@@ -483,6 +483,12 @@ a[href*="emergent"],
   margin-left: auto;
   margin-right: auto;
 }
+
+/* Se il top ha troppo padding, accorciamo SOLO in Bio */
+.page-bio .section-spacing {
+  padding-top: 24px;            /* prima era più alto */
+}
+
 /* Altezza header (stima): puoi ritoccare i valori se serve */
 :root {
   --header-h-desktop: 80px;
@@ -508,9 +514,4 @@ a[href*="emergent"],
 /* Se usi ancore (#/bio), evita tagli anche quando si arriva con link */
 html {
   scroll-padding-top: var(--header-h-mobile);
-}
-
-/* Se il top ha troppo padding, accorciamo SOLO in Bio */
-.page-bio .section-spacing {
-  padding-top: 24px;            /* prima era più alto */
 }
