@@ -483,6 +483,32 @@ a[href*="emergent"],
   margin-left: auto;
   margin-right: auto;
 }
+/* Altezza header (stima): puoi ritoccare i valori se serve */
+:root {
+  --header-h-desktop: 80px;
+  --header-h-mobile: 112px; /* più alto su mobile */
+}
+
+/* Spazio sopra il contenuto della pagina Bio */
+.page-bio {
+  padding-top: var(--header-h-desktop);
+}
+
+/* Su mobile aumenta il padding-top così il titolo non resta sotto il menu */
+@media (max-width: 768px) {
+  .page-bio {
+    padding-top: var(--header-h-mobile);
+  }
+  /* Azzeriamo eventuali margini extra del titolo */
+  .page-bio .section-title {
+    margin-top: 0;
+  }
+}
+
+/* Se usi ancore (#/bio), evita tagli anche quando si arriva con link */
+html {
+  scroll-padding-top: var(--header-h-mobile);
+}
 
 /* Se il top ha troppo padding, accorciamo SOLO in Bio */
 .page-bio .section-spacing {
