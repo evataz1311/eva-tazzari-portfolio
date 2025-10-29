@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, EmailStr, Field
 from db import get_db
 import os, smtplib, ssl
