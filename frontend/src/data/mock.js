@@ -10,13 +10,8 @@ export const translations = {
   },
   home: {
     hero: {
-      it: `Artista senza risposte.
-      Creo opere come domande aperte.
-      Il resto lo mette chi guarda.`,
-
-      en: `Artist without answers.
-I create artworks as open questions.
-The rest is up to the viewer.`,
+      it: `Vorrei donare il pensiero che nascendo sul mio substrato, attraverso il linguaggio universale dell’arte, si insinua nelle pieghe dell’essere altrui.`,
+      en: `I wish to offer the thought that, born from my own substratum and conveyed through the universal language of art, insinuates itself into the folds of others’ being.`,
     },
     intro: {
       it: 'Io sono Eva Tazzari. Uso il corpo, la tecnologia, la natura e i giocattoli come linguaggi che si scontrano e si fondono. Scolpisco domande. Ogni opera è un esperimento di connessione, una frattura viva tra umano e artificiale.',
