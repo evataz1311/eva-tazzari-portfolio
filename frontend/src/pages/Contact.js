@@ -41,8 +41,8 @@ export default function Contact() {
                   <div className="body-text">Málaga, Spagna</div>
                 </div>
 
-                <div className="body-text" style={{ opacity: 0.9 }}>
-                  Disponibile per collaborazioni.
+               <div className="body-text" style={{ opacity: 0.9 }}>
+                 {t({ it: "Disponibile per collaborazioni.", en: "Available for collaborations." })}
                 </div>
               </div>
             </div>
