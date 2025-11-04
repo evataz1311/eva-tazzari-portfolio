@@ -14,8 +14,8 @@ export const translations = {
       en: `I wish to offer the thought that, born from my own substratum and conveyed through the universal language of art, insinuates itself into the folds of others’ being.`,
     },
     intro: {
-      it: 'Eva Tazzari è un\'artista e scultrice contemporanea italiana che esplora l\'intersezione tra corpo, tecnologia e natura. Le sue opere sfidano le convenzioni attraverso forme organiche e materiali innovativi.',
-      en: 'Eva Tazzari is an Italian contemporary artist and sculptor who explores the intersection between body, technology, and nature. Her works challenge conventions through organic forms and innovative materials.'
+      it: '',
+      en: ''
     },
     featured: { it: 'Opere in Evidenza', en: 'Featured Works' },
     latest: { it: 'Ultimo Articolo', en: 'Latest Article' },
