@@ -7,7 +7,7 @@ import os
 from db import init_db, close_db   # <--- NEW
 # NON importare più motor qui
 
-load_dotenv()
+
 app = FastAPI()
 
 origins = os.getenv("CORS_ORIGINS", "http://localhost:3000").split(",")
