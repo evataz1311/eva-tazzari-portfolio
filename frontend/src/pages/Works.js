@@ -40,7 +40,7 @@ const Works = () => {
 
   return (
     <div style={{ paddingTop: '80px' }}>
-      <section className="section-spacing">
+      <section className="section-spacing page-offset">
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: 'var(--spacing-2xl)' }}>
             <h1 className="section-title">{t(translations.works.title)}</h1>

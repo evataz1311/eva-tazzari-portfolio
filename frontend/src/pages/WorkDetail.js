@@ -18,10 +18,9 @@ const WorkDetail = () => {
   const navigate = useNavigate();
   const { t } = useLanguage();
 
-  // trova l'opera per id (funziona anche se id è stringa)
+  // trova l'opera per id
   const work = artworksMock.find((w) => String(w.id) === String(id));
 
-  // se non trovata
   if (!work) {
     return (
       <div style={{ paddingTop: "120px", textAlign: "center" }}>
@@ -33,48 +32,80 @@ const WorkDetail = () => {
           className="btn btn-outline"
           style={{ marginTop: "var(--spacing-lg)" }}
         >
-          <ArrowLeft size={16} /> {t({ it: "Torna alle opere", en: "Back to works" })}
+          <ArrowLeft size={16} />{" "}
+          {t({ it: "Torna alle opere", en: "Back to works" })}
         </button>
       </div>
     );
   }
 
   return (
-    <div style={{ paddingTop: "100px" }}>
+    <div style={{ paddingTop: "100px" }} className="work-detail">
+      {/* CSS mirato per questo componente */}
+      <style>{`
+        .work-grid {
+          display: grid;
+          grid-template-columns: 1.5fr 1fr;
+          gap: var(--spacing-3xl);
+          align-items: start;
+        }
+        .work-image img {
+          width: 100%;
+          aspect-ratio: 3 / 4;
+          object-fit: cover;
+          border-radius: 12px;
+          display: block;
+        }
+        @media (max-width: 900px) {
+          .work-grid {
+            grid-template-columns: 1fr; /* immagine sopra, dettagli sotto */
+          }
+          .work-image img {
+            aspect-ratio: 4 / 5;       /* più “verticale” su smartphone */
+            max-height: 80vh;          /* riempie bene lo schermo in verticale */
+          }
+        }
+      `}</style>
+
       <section className="section-spacing">
         <div className="container">
-          <Link to="/works" className="btn btn-outline" style={{ marginBottom: "var(--spacing-lg)" }}>
-            <ArrowLeft size={16} /> {t({ it: "Torna alle opere", en: "Back to works" })}
+          <Link
+            to="/works"
+            className="btn btn-outline"
+            style={{ marginBottom: "var(--spacing-lg)" }}
+          >
+            <ArrowLeft size={16} />{" "}
+            {t({ it: "Torna alle opere", en: "Back to works" })}
           </Link>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1.5fr 1fr",
-              gap: "var(--spacing-3xl)",
-              alignItems: "start",
-            }}
-          >
+          <div className="work-grid">
             {/* Immagine */}
-            <div>
+            <div className="work-image">
               <img
                 src={work.image}
                 alt={t(work.title)}
-                onError={(e) => { e.currentTarget.src = '/media/placeholder.jpg'; }}
-                style={{ width: "100%", aspectRatio: "3/4", objectFit: "cover" }}
+                onError={(e) => {
+                  e.currentTarget.src = "/media/placeholder.jpg";
+                }}
               />
             </div>
 
             {/* Dettagli */}
-            <div>
+            <div className="work-details">
               <span
                 className="category-badge"
-                style={{ marginBottom: "var(--spacing-md)", display: "inline-block" }}
+                style={{
+                  marginBottom: "var(--spacing-md)",
+                  display: "inline-block",
+                }}
               >
                 {t(translations.works[work.category])}
               </span>
 
-              <h1 className="section-title" style={{ marginBottom: "var(--spacing-lg)" }}>
+              <h1
+                className="section-title"
+                style={{ marginBottom: "var(--spacing-lg)" }}
+              >
                 {t(work.title)}
               </h1>
 
@@ -104,7 +135,8 @@ const WorkDetail = () => {
                 >
                   <Layers size={18} style={{ color: "var(--color-gray-500)" }} />
                   <span className="small-text">
-                    <strong>{t(translations.works.technique)}:</strong> {t(work.technique)}
+                    <strong>{t(translations.works.technique)}:</strong>{" "}
+                    {t(work.technique)}
                   </span>
                 </div>
 
@@ -118,7 +150,8 @@ const WorkDetail = () => {
                 >
                   <Ruler size={18} style={{ color: "var(--color-gray-500)" }} />
                   <span className="small-text">
-                    <strong>{t(translations.works.dimensions)}:</strong> {work.dimensions}
+                    <strong>{t(translations.works.dimensions)}:</strong>{" "}
+                    {work.dimensions}
                   </span>
                 </div>
 
@@ -133,7 +166,8 @@ const WorkDetail = () => {
                   >
                     <MapPin size={18} style={{ color: "var(--color-gray-500)" }} />
                     <span className="small-text">
-                      <strong>{t(translations.works.series)}:</strong> {t(work.series)}
+                      <strong>{t(translations.works.series)}:</strong>{" "}
+                      {t(work.series)}
                     </span>
                   </div>
                 )}
@@ -147,15 +181,19 @@ const WorkDetail = () => {
                   }}
                 >
                   {work.available === true ? (
-                     <>
-                        <CheckCircle size={18} style={{ color: "#10b981" }} />
-                        <span className="small-text">{t(translations.works.available)}</span>
-                     </>
+                    <>
+                      <CheckCircle size={18} style={{ color: "#10b981" }} />
+                      <span className="small-text">
+                        {t(translations.works.available)}
+                      </span>
+                    </>
                   ) : work.available === false ? (
                     <>
                       <XCircle size={18} style={{ color: "var(--color-gray-400)" }} />
-                      <span className="small-text">{t(translations.works.sold)}</span>
-                     </>
+                      <span className="small-text">
+                        {t(translations.works.sold)}
+                      </span>
+                    </>
                   ) : null}
                 </div>
               </div>
@@ -163,7 +201,11 @@ const WorkDetail = () => {
               {/* Descrizione */}
               <p
                 className="body-text"
-                style={{ fontSize: "1.1rem", lineHeight: "1.8", marginBottom: "var(--spacing-xl)" }}
+                style={{
+                  fontSize: "1.1rem",
+                  lineHeight: "1.8",
+                  marginBottom: "var(--spacing-xl)",
+                }}
               >
                 {t(work.description)}
               </p>

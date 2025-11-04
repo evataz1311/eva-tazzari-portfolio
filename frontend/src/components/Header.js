@@ -1,77 +1,67 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { useLanguage } from '../contexts/LanguageContext';
-import { translations } from '../data/mock';
-import { Globe } from 'lucide-react';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { useLanguage } from "../contexts/LanguageContext";
+import { translations } from "../data/mock";
+import { Globe } from "lucide-react";
 
 const Header = () => {
   const { language, toggleLanguage, t } = useLanguage();
-  const location = useLocation();
 
-  const isActive = (path) => location.pathname === path;
+  const linkClass = ({ isActive }) =>
+    `nav-link${isActive ? " nav-link--active" : ""}`;
 
   return (
-    <header className="header">
+    <header className="header" role="banner">
       <div className="container">
         <div className="header-content">
-          <Link to="/" className="logo">
+          <NavLink to="/" className="logo" aria-label="Eva Tazzari — Home">
             EVA TAZZARI
-          </Link>
+          </NavLink>
 
-          <nav>
+          <nav aria-label="Main">
             <ul className="nav-menu">
               <li className="nav-item">
-                <Link 
-                  to="/" 
-                  className="nav-link"
-                  style={{ color: isActive('/') ? 'var(--color-black)' : undefined }}
-                >
+                <NavLink to="/" end className={linkClass}>
                   {t(translations.nav.home)}
-                </Link>
+                </NavLink>
               </li>
+
               <li className="nav-item">
-                <Link 
-                  to="/works" 
-                  className="nav-link"
-                  style={{ color: isActive('/works') ? 'var(--color-black)' : undefined }}
-                >
-                  {t(translations.nav.works)}
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link 
-                  to="/bio" 
-                  className="nav-link"
-                  style={{ color: isActive('/bio') ? 'var(--color-black)' : undefined }}
-                >
+                <NavLink to="/bio" className={linkClass}>
                   {t(translations.nav.bio)}
-                </Link>
+                </NavLink>
               </li>
+
               <li className="nav-item">
-                <Link 
-                  to="/articles" 
-                  className="nav-link"
-                  style={{ color: isActive('/articles') ? 'var(--color-black)' : undefined }}
-                >
-                  {t(translations.nav.articles)}
-                </Link>
+                <NavLink to="/works" className={linkClass}>
+                  {t(translations.nav.works)}
+                </NavLink>
               </li>
+
               <li className="nav-item">
-                <Link 
-                  to="/contact" 
-                  className="nav-link"
-                  style={{ color: isActive('/contact') ? 'var(--color-black)' : undefined }}
-                >
+                <NavLink to="/articles" className={linkClass}>
+                  {t(translations.nav.articles)} {/* reso “BLOG” nelle traduzioni */}
+                </NavLink>
+              </li>
+
+              <li className="nav-item">
+                <NavLink to="/contact" className={linkClass}>
                   {t(translations.nav.contact)}
-                </Link>
+                </NavLink>
               </li>
             </ul>
           </nav>
 
-          <div className="language-switcher" onClick={toggleLanguage}>
+          <button
+            type="button"
+            className="language-switcher"
+            onClick={toggleLanguage}
+            aria-label="Cambia lingua"
+            title="Cambia lingua"
+          >
             <Globe size={16} />
             <span>{language.toUpperCase()}</span>
-          </div>
+          </button>
         </div>
       </div>
     </header>
