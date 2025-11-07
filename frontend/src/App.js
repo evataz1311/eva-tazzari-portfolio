@@ -17,10 +17,16 @@ import Contact from "./pages/Contact";
 // Splash
 import SplashIntro from "./components/SplashIntro";
 
+// Scroll-to-top su cambio rotta
+import ScrollToTop from "./components/ScrollToTop";
+
 function App() {
   return (
     <LanguageProvider>
       <BrowserRouter>
+        {/* Torna in alto ad ogni cambio pagina */}
+        <ScrollToTop behavior="instant" />
+        
         {/* Splash in cima: copre tutto finché non interagisci */}
         <SplashIntro
           image="/media/intro.jpg"   // cambia path se serve
