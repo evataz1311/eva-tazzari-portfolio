@@ -86,7 +86,7 @@ export const artworks = [
     en: 'A belt as a gesture of silent rebellion. Replicated faces, icons of an imposed ideal, crack, get soiled, become human. Each tile is an imperfect fragment. Seriality breaks. Beauty is rebuilt in the cracks, in the flaw that becomes identity.' 
   },
 image: '/media/works/Fragment of the cage White2.png',
-  featured: true
+  featured: false
 },
 {
   id: 3,
@@ -100,7 +100,7 @@ image: '/media/works/Fragment of the cage White2.png',
     en: 'A belt as a gesture of silent rebellion. Replicated faces, icons of an imposed ideal, crack, get soiled, become human. Each tile is an imperfect fragment. Seriality breaks. Beauty is rebuilt in the cracks, in the flaw that becomes identity.' 
   },
 image: '/media/works/Fragment of the cage Black.png',
-  featured: true
+  featured: false
 },
 {
   id: 4,
@@ -184,7 +184,7 @@ image: '/media/works/transhuman_progetto9_1.jpg',
     en: 'Bodies taken apart, faces without a gaze, fragments of perfection thrown into a metal cage. The container no longer processes data: it now stores scraps of identity. Plastic is standardized skin, beauty reduced to a protocol. Here femininity is not image, but residue. An archive of what remains after homogenization.' 
   },
 image: '/media/works/anima fragile progetto 3_1.jpg',
-  featured: false
+  featured: true
 },
 {
   id: 10,
@@ -296,7 +296,7 @@ image: '/media/works/progetto senza titolo 2.jpg',
     en: 'A silver face, half flesh and half code. “Simbiosys.” The skin opens and the circuits breathe. The boundary dissolves: what was human now throbs with metal. No longer invasion, but coexistence. The machine inhabits us, feeds us, transforms us.' 
   },
   image: '/media/works/transhuman simbiosys.png',
-  featured: false
+  featured: true
 },
 {
   id: 18,
@@ -323,7 +323,7 @@ image: '/media/works/progetto senza titolo 2.jpg',
     it: 'Un volto bianco, avvolto da una tastiera. Un ponte tra due mondi. L’uomo e la macchina. La visione si spegne dietro un filtro di codice. “TransHuman” racconta in silenzio: la connessione diventa prigione e la parola, silenzio.', 
     en: 'A white face, wrapped in a keyboard. A bridge between two worlds: the human and the machine. Vision goes dark behind a filter of code. “TransHuman” speaks in silence: connection becomes prison and the word, silence.' 
   },
-  image: '/media/works/las senoritas 3.jpg',
+  image: '/media/works/transhuman_1.jpg',
   featured: false
 },
 {
@@ -337,7 +337,7 @@ image: '/media/works/progetto senza titolo 2.jpg',
     it: 'Un volto nero emerge da un campo di tasti sparsi. Lettere, comandi, frammenti di linguaggio si mescolano alla pelle. L’umano e il digitale si confondono: la parola si fa codice, il respiro diventa input. Un corpo in rete, connesso e perduto.', 
     en: 'A black face emerges from a field of scattered keys. Letters, commands, fragments of language mingle with the skin. The human and the digital blur: the word becomes code, breath becomes input. A body in the network, connected and lost.' 
   },
-  image: '/media/works/neural eugenics.jpg',
+  image: '/media/works/Transhuman.png',
   featured: false
 },
 {
@@ -351,7 +351,7 @@ image: '/media/works/progetto senza titolo 2.jpg',
     it: 'Corpi di bambole intrecciati in un abbraccio ambiguo e rituale. “Las Señoritas” mette a nudo la femminilità artificiale, la trasforma in gesto consapevole. La plastica e il gesso, il dorato e il carne: contrasti che diventano libertà. Bellezza imperfetta, ribelle, autentica.', 
     en: 'Doll bodies intertwined in an ambiguous, ritual embrace. “Las Señoritas” lays bare artificial femininity and turns it into a conscious gesture. Plastic and plaster, gold and flesh: contrasts that become freedom. Imperfect, rebellious, authentic beauty.' 
   },
-  image: '/media/works/homologacion 6 pannelli.png',
+  image: '/media/works/las senoritas 3.jpg',
   featured: false
 },
 {
@@ -365,7 +365,7 @@ image: '/media/works/progetto senza titolo 2.jpg',
     it: 'Un feto di gesso, puro e immobile, è nutrito da un cordone ombelicale di cavi colorati che come vene artificiali lo tengono in vita. “Neural Eugenics” indaga il limite tra progresso e controllo, tra nascita e manipolazione. Un corpo fragile nel dominio della tecnologia: promessa di vita o esperimento di potere?', 
     en: 'A plaster fetus, pure and motionless, is nourished by an umbilical cord of colored cables that, like artificial veins, keep it alive. “Neural Eugenics” probes the boundary between progress and control, between birth and manipulation. A fragile body in the domain of technology: a promise of life or an experiment in power?' 
   },
-  image: '/media/works/las senoritas.jpg',
+  image: '/media/works/neural eugenics.jpg',
   featured: false
 },
 {
@@ -379,7 +379,7 @@ image: '/media/works/progetto senza titolo 2.jpg',
     it: 'Volti femminili in gesso, ripetuti e ordinati, raccontano l’omologazione. Tutti uguali, eppure fragilmente diversi. Alcune formelle si incrinano, resistono. L’opera riflette sulla perdita dell’identità nell’era della conformità e sul coraggio sottile di chi, anche spezzandosi, resta sé stesso.', 
     en: 'Female plaster faces, repeated and ordered, tell of homogenization. All the same, yet fragilely different. Some tiles crack and resist. The work reflects on the loss of identity in the age of conformity and on the subtle courage of those who, even while breaking, remain themselves.' 
   },
-  image: '/media/works/human low cost 2.jpeg',
+  image: '/media/works/homologacion 6 pannelli.png',
   featured: false
 },
 {
@@ -393,7 +393,7 @@ image: '/media/works/progetto senza titolo 2.jpg',
     it: 'Bambole intrecciate in una danza sospesa tra erotismo e ironia. Corpi perfetti e plastici si sfiorano su un fondo dorato, tra desiderio e artificio. “Las Señoritas” racconta la mercificazione del femminile e la libertà di chi sceglie di mostrarsi oltre lo stereotipo.', 
     en: 'Dolls intertwined in a dance suspended between eroticism and irony. Perfect, plastic bodies brush against each other on a golden ground, between desire and artifice. “Las Señoritas” tells of the commodification of the feminine and the freedom of those who choose to show themselves beyond the stereotype.' 
   },
-  image: '/media/works/lambs.jpg',
+  image: '/media/works/las senoritas.jpg',
   featured: false
 },
 {
@@ -652,6 +652,111 @@ image: '/media/bio/eva-bio.png',
 ]
 };
 export const articles = [
+{
+    id: 53,
+    title: {
+      it: ' Málaga, 12 novembre 2025, mercoledì ',
+      en: ' Málaga, November 12, 2025, Wednesday '
+    },
+    date: ' 12/11/2025 ',
+    excerpt: {
+      it: '   ',
+      en: '   ',
+    },
+    content: {
+      it: ` cos'è Arte? 
+Arte è idea? 
+Se l'idea è già arte, ogni pensiero è creazione.
+Ma se nessuno può vedere, toccare, attraversare, resta sogno, resta ombra. 
+Ed è più reale una idea o un'ombra? 
+
+Realizzare un'opera diventa quindi parte del processo creativo. 
+La realizzazione è arte. 
+Toccare, impastare, soffiare, assemblare, sbagliare, ricominciare, tutto fa parte del processo ed entrano con cognizione e a pieno titolo nella definizione di arte. 
+
+Poi arriva il riconoscimento. 
+Cosa distingue un oggetto da un'opera d'arte?
+Potrebbe essere l'intenzione, quindi il fatto di creare su una base idea e presentare il tutto come un messaggio, chiaro o meno. 
+
+Ecco, poi ci sono le eccezioni. 
+C'è arte delegata, commissionata, che nasce da mani estranee. 
+C'è arte rubata, plagiata, perchè il furto di idee altrui può essere esso stesso un atto creativo. 
+C'è arte invisibile, che non si può toccare, vedere, attraversare. 
+C'è arte effimera, come una performance, che vive solo nel momento e poi non esiste più. 
+C'è arte caduca, che si distrugge nel tempo, non duratura, che si consuma e finisce lentamente, facendo di questa trasformazione tanti momenti performativi a se stanti. 
+C'è arte senza intenzione, nata per sbaglio, con altri scopi o senza volere, in menti tanto chiuse da non poter essere lette o in menti tanto aperte da non poter essere contenute. 
+
+Gli unici due punti che rimangono fermi sono l'inizio e la fine di un'opera: l'idea da cui nasce e il riconoscimento dentro cui finisce. 
+Come per un essere vivente, la vita e la morte, due momenti identici per tutti. La diversità sta nel cammino centrale. 
+
+L'inizio, la nascita. 
+L'idea è la linfa vitale, la scintilla, la visone geniale che si genera su un substrato mentale fuori norma. Una mente che vede oltre il tempo e il luogo. 
+
+La fine, la morte. 
+Il riconoscimento, quel veleno lento che trasforma il gesto in mercato, un riflesso sociale che acceca le menti, una distorsione necessaria. 
+Senza pubblico l'opera tace nell'oblio. 
+Con troppi occhi diventa spettacolo, evento circense. 
+
+Quindi, forse, la domanda corretta non è "COSA è ARTE?" 
+La domanda corretta è "QUANDO QUALCOSA DIVENTA ARTE?" 
+
+Ovvero quell'istante preciso in cui qualcosa smette di essere FARE e diventa ESSERE. 
+Questo istante non lo decide l'artsita, non lo decide lo spettatore, non lo decide la critica. 
+Succede. 
+Succede e basta. 
+Come un cortocircuito. 
+Come un respiro. 
+
+e tutto ha inizio
+`,
+      en: ` What is Art?
+Is art an idea?
+If the idea itself is already art, then every thought is creation.
+But if no one can see it, touch it, walk through it, it remains a dream, a shadow.
+And tell me: which is more real, an idea or its shadow?
+
+To make an artwork becomes part of the creative process.
+Making is art.
+Touching, shaping, blowing, assembling, failing, starting again, every gesture belongs consciously and fully to the definition of art.
+
+Then comes recognition.
+What separates an object from a work of art?
+Perhaps it is intention, the act of creating from an idea and presenting it as a message, clear or obscure.
+
+And yet, there are exceptions.
+There is delegated art, commissioned, born from the hands of others.
+There is stolen art, plagiarized, because stealing another’s idea can itself be a creative act.
+There is invisible art, untouchable, unseen, unwalkable.
+There is ephemeral art, that lives only in the moment and then disappears.
+There is perishable art, that slowly destroys itself, its decay becoming a series of performances in time.
+There is art without intention, born by mistake, from closed minds that cannot be read, or from minds so open they cannot be contained.
+
+The only two fixed points are the beginning and the end of a work: the idea from which it is born, and the recognition that marks its death.
+Like a living being, birth and death are the same for all. The difference lies in the journey in between.
+
+The beginning, the birth.
+The idea is the lifeblood, the spark, the visionary flash that emerges from a mind that sees beyond place and time.
+
+The end, the death.
+Recognition, that slow poison that turns the gesture into market, a social reflection that blinds and distorts.
+Without an audience, the work falls silent and fades into oblivion.
+With too many eyes, it becomes spectacle, circus, event.
+
+So perhaps the right question isn’t What is Art?
+The real question is When does something become Art?
+
+That precise instant when something stops being doing and becomes being.
+That moment cannot be decided by the artist, nor by the viewer, nor by the critic.
+It just happens.
+It happens, simply.
+
+And everything begins.
+`
+    },
+    image: '/media/works/53.jpg',
+    featured: true
+  },
+
 {
     id: 2,
     title: {
