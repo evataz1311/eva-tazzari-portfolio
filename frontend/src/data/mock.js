@@ -653,6 +653,68 @@ image: '/media/bio/eva-bio.png',
 };
 export const articles = [
 {
+    id: 54,
+    title: {
+      it: ' Málaga, 17 novembre 2025, lunedì ',
+      en: ' Málaga, November 17, 2025, Monday '
+    },
+    date: ' 17/11/2025 ',
+    excerpt: {
+      it: '   ',
+      en: '   ',
+    },
+    content: {
+      it: ` La Fragilità non è una debolezza. 
+È la zona di contatto, dove l'essere umano si lascia contaminare, magari contro voglia, ma si trasforma, si tocca. 
+Se sei fragile sei permeabile. L'opposto è la corazza, la perfezione. 
+La carne si decompone, sente, assorbe, si taglia e quella ferita da e riceve. 
+
+Diversità è ciò che risulta dalla frattura, dal taglio, da ciò che ha ricevuto. è una condizione biologica dell'esistenza. 
+Tutto ciò che vive parte uguale e tende alla differenza, devia. 
+Differenza e deviazione sono la vita. 
+Omologazione la morte. Lenta. 
+
+Fragilità e diversità formano la coppia sovversiva a cui bisognerebbe tendere per non morire. 
+In questo mondo che idolatra la performance, la perfezione standardizzata, la ripetitibilità del gesto, in questo mondo essere fragili e essere diversi è un atto di ribellione, consapevole o meno. 
+
+La materia cede. 
+L'dentità resiste. 
+Il gesso si incrina
+La resina si sporca 
+La barbie di smonta 
+Ogni opera è una piccola rivoluzione, per riaffermare l'irriducibile leggerezza dell'essere, singolarità del corpo, fugacità del pensiero. 
+La tecnologia cerca unità, cerca standardizzazione, cerca efficienza. 
+
+La salvezza è avere il coraggio di rispondere con dissonanza, con errori che respirano di verità.
+`,
+      en: ` Fragility is not weakness.
+It is a zone of contact, where the human being allows itself to be contaminated, sometimes unwillingly, but still transforms, still touches.
+If you are fragile, you are permeable. The opposite is armor. Perfection.
+Flesh decomposes, feels, absorbs, bleeds. And that wound gives and receives.
+
+Diversity is what emerges from the fracture, from the cut, from what has been received. It is a biological condition of existence.
+Everything that lives begins equal, and tends toward difference, deviation.
+Difference and deviation are life.
+Homologation is death. Slow and silent.
+
+Fragility and diversity form the subversive pair we should strive for, if we don’t want to die.
+In this world that worships performance, standard perfection, the repeatable gesture, to be fragile and to be different is an act of rebellion, conscious or not.
+
+Matter yields. 
+Identity resists.
+Plaster cracks.
+Resin stains.
+The Barbie falls apart.
+Each work is a small revolution, reaffirming the irreducible lightness of being, the singularity of the body, the fleetingness of thought.
+Technology seeks unity. It seeks standardization. Efficiency.
+
+Salvation lies in the courage to respond with dissonance, with errors that breathe truth.
+`
+    },
+    image: '/media/works/54.png',
+    featured: true
+  },
+{
     id: 53,
     title: {
       it: ' Málaga, 12 novembre 2025, mercoledì ',
