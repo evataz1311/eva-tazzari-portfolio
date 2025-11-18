@@ -653,6 +653,57 @@ image: '/media/bio/eva-bio.png',
 };
 export const articles = [
 {
+    id: 55,
+    title: {
+      it: ' Málaga, 18 novembre 2025, martedì ',
+      en: ' Málaga, November 18, 2025, Tuesday '
+    },
+    date: ' 18/11/2025 ',
+    excerpt: {
+      it: '   ',
+      en: '   ',
+    },
+    content: {
+      it: ` Cerco di poggiare la mia attenzione sulla luce, sulla creazione. 
+Poi penso alle mie creazioni, che vivono al buio di una scatola di legno. 
+Ho pensato a volte di distruggerle, perchè nella morte ritroverebbero la vita. 
+Ho pensato di donarle, per poterle far uscire dalla scatola, perchè la morte, la distruzione, mi sembra un atto così definitivo; definitivo e creativo. 
+Opere a tempo. 
+Se dopo un numero predeterminato di giorni non trovano una collocazione, è giusto terminare l'agonia di una esistenza senza significato. 
+Sì, perchè un'opera chiusa in una scatola è un'opera senza significato. 
+Ma avrò il coraggio, come spinta creatrice, di distruggere le mie creazioni? 
+Perchè la mia responsabilità come creatrice, non si ferma al dare una forma, prosegue nell'assunzione del peso del loro destino. 
+Quindi distruggere non è negare, ma chiudere un ciclo, è un rito funebre che restituisce al mondo l'energia che ti è stata data. 
+Però esito, esito sempre.
+E anche in questa esitazione, in questa tensione fra conservare e dissolvere, c'è arte, perchè l'opera continua a vivere, seppur in uno spazio angusto, seppur in una scatola, seppur nel pensiero di distruggerla. 
+La distruzione è rinascita 
+La conservazione è sopravvivenza 
+A questo punto la domanda è: 
+“dove sta la vita di un'opera: nella sopravvivenza visiva e reale o nella rinascita, nel ricordo dopo la scomparsa?”
+`,
+      en: ` Try to rest my attention on the light, on creation.
+Then I think of my creations, living in the darkness of a wooden box.
+At times I’ve thought of destroying them, because in death they might find life again. 
+I’ve thought of giving them away, to free them from the box, because death, destruction, feels so definitive; definitive and creative.
+Timed works.
+If after a predetermined number of days they don’t find a place, it seems fair to end the agony of an existence without meaning.
+Yes, because a work shut inside a box is a work without meaning.
+But will I have the courage, as a creative act, to destroy my own creations?
+Because my responsibility as a creator doesn’t end with giving form, it continues in bearing the weight of their destiny.
+So destruction is not denial, but closure.
+A funeral rite that returns to the world the energy that was once given to me.
+Yet I hesitate, always.
+And even in that hesitation, in that tension between preserving and dissolving, there is art, because the work continues to live, even in a narrow space, even in a box, even in the thought of its destruction.
+Destruction is rebirth.
+Preservation is survival.
+So the question is:
+“Where does the life of a work truly lie: in its visible, tangible rebirth, or in its survival, in its memory after disappearance?”
+`
+    },
+    image: '/media/works/55.png',
+    featured: true
+  },
+{
     id: 54,
     title: {
       it: ' Málaga, 17 novembre 2025, lunedì ',
